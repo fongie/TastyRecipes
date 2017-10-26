@@ -5,9 +5,13 @@
 
 /* General */
 
+@import url('https://fonts.googleapis.com/css?family=Cinzel|Sorts+Mill+Goudy|Mada');
+
+
 html {
     text-align: center;
     color: #333333;
+    font-family: "Mada";
 }
 
 
@@ -19,9 +23,9 @@ a:visited {
     text-decoration: none;
 }
 
-
-h1, h2, h3, h4 {
-    text-align: center;
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 img {
@@ -33,10 +37,13 @@ img {
 header {
     padding-top: 0;
     background-color: #b3b3ff;
+    overflow: hidden;
 }
 
 header h1 {
-    font-size: 4em;
+    font-family: "Cinzel";
+    font-size: 3.5em;
+    padding: 22px 0 22px 0;
 }
 
 
@@ -65,8 +72,8 @@ nav a, span {
     font-size: 1.3em;
     padding: 15px 10px;
     color: #ccccff;
+    font-family: "Sorts Mill Goudy";
 }
-
 
 nav a:hover {
     background-color: #e6e6ff;
@@ -128,4 +135,36 @@ footer {
     padding: 15px 32px;
     display: inline-block;
     margin-bottom: 20px;
+    cursor: pointer;
 }
+
+/* Calendar page */
+
+.calendar {
+    background: rgba(0,0,0,.1);
+    border-radius: 5px;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 15px;
+    margin: 20px 0 20px 0;
+}
+
+
+table {
+      background: #fff;
+      border-collapse: collapse;
+      color: #222;
+      font-family: 'PT Sans', sans-serif;
+      font-size: 13px;
+      width: 100%;
+  }
+  td {
+      border: 1px solid #ccc;
+      color: #444;
+      line-height: 22px;
+      text-align: center;
+  }
+  tr:first-child td {
+      color: #222;
+      font-weight: 700;
+  }
