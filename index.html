@@ -4,8 +4,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Tasty Recipes</title>
-    </head>
+        <link rel="stylesheet" href="css/normalize.css"> <!-- normalize first for all browsers -->
+        <link rel="stylesheet" href="css/main.css">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	</head>
     <body>
+        <div id="wrapper">
 
         <header>
         <h1>TASTY RECIPES</h1>
@@ -18,30 +23,35 @@
                         <a href="calendar.html">Calendar</a>
                     </li>
                     <li>
-                        Recipe Pages
-                    </li>
-                    <ul>
-                        <li>
+                        <div class="dropdown">
+                            <a href="#" class="dropbtn">Recipes</a>
+                            <div class="dropdown-content">
                             <a href="meatballs.html">Meatballs</a>
-                        </li>
-                        <li>
                             <a href="pancakes.html">Pancakes</a>
-                        </li>
-                    </ul>
+                            </div>
+                    </div>
+                    </li>
                 </ul>
             </nav>
         </header>
 
-        <div>
+        <section id="home">
             <a href="calendar.html">
                 <img alt="table with tomatoes pasta and a wooden spoon" src="img/home1.jpg">
-                <strong>Check out the recipe of the day!</strong>
+                <button>Check out the recipe of the day!</button>
             </a>
-        </div>
+        </section>
 
         <footer>
-            Footer with copyright and links and possibly system status
+            <a href="https://www.facebook.com/max.korlinge">
+					<img src="img/fb.jpg" alt="Facebook icon" class = "social-icon">
+				</a>
+				<a href="https://www.twitter.com/maxkorlinge">
+					<img src="img/twitter.png" alt="Twitter icon" class= "social-icon">
+				</a>
+				<p>&copy; 2017 <a href="http://maxk.se">Max Körlinge.</a></p>
         </footer>
+        </div>
     </body>
 
 </html>
