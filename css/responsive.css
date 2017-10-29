@@ -13,8 +13,6 @@
         font-size: 1.5em;
         padding: 15px 30px;
     }
-
-
 }
 
 @media screen and (min-width: 660px) { /*Big screens*/
@@ -54,7 +52,7 @@
         margin: 40px 15% 0 15%;
     }
 
-    #home button {
+    #home .button {
         margin: auto;
         margin-bottom: 20px;
         margin-top: 10px;
@@ -76,19 +74,23 @@
         flex-basis: 50%;
     }
 
+    .recipe-header img {
+        margin-left: 10px;
+    }
+
     .instructions-list {
         flex: 1;
+        flex-basis: 100%;
     }
 
     .ingredient-list {
         flex: 1;
         flex-basis: 40%;
-        margin: 0;
         margin-top: 20px;
     }
 
 }
-@media screen and (min-width: 1100px) { /*Big screens*/
+@media screen and (min-width: 1178px) { /*Big screens*/
     header h1 {
         font-size: 8em;
     }
@@ -96,5 +98,5 @@
     #home img {
         width: 40%;
         margin: 40px 30% 0 30%;
-
+    }
 }
