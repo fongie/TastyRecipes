@@ -65,6 +65,28 @@
         margin: auto;
         margin-bottom: 90px;
     }
+
+    .recipe {
+        flex-flow: row wrap;
+        align-items: flex-start;
+    }
+
+    .recipe-header {
+        flex: 1;
+        flex-basis: 50%;
+    }
+
+    .instructions-list {
+        flex: 1;
+    }
+
+    .ingredient-list {
+        flex: 1;
+        flex-basis: 40%;
+        margin: 0;
+        margin-top: 20px;
+    }
+
 }
 @media screen and (min-width: 1100px) { /*Big screens*/
     header h1 {
