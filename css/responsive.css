@@ -1,3 +1,72 @@
 
 /* Responsive css to make Tasty Recipes website responsive for larger viewports
  */
+
+@media screen and (min-width: 480px) { /*Tablets*/
+
+    header h1 {
+        font-size: 4em;
+        margin: 0.5em 0;
+    }
+
+    nav a, span {
+        font-size: 1.5em;
+        padding: 15px 30px;
+    }
+
+
+}
+
+@media screen and (min-width: 660px) { /*Big screens*/
+
+    header {
+        display: flex;
+        border-bottom-style: solid;
+        border-bottom-color: #000066;
+        border-bottom-width: 3px;
+    }
+
+    header h1 {
+        font-size: 4em;
+        margin: auto;
+    }
+
+    nav {
+        order: -1; /*Puts it on the right of header*/
+    }
+    nav ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav li {
+        padding-bottom: 20px;
+        margin: auto;
+    }
+
+    #home {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #home img {
+        width: 70%;
+        margin: 40px 15% 0 15%;
+    }
+
+    #home button {
+        margin: auto;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+}
+@media screen and (min-width: 1100px) { /*Big screens*/
+    header h1 {
+        font-size: 8em;
+    }
+
+    #home img {
+        width: 40%;
+        margin: 40px 30% 0 30%;
+
+}
