@@ -7,6 +7,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Cinzel|Sorts+Mill+Goudy|Mada|Walter+Turncoat');
 
+.hidden {
+    display: none;
+}
 
 html {
     text-align: center;
