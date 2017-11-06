@@ -10,26 +10,7 @@
     </head>
     <body>
         <header>
-            <h1>TASTY RECIPES</h1>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="calendar.html">Calendar</a>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <a href="#" class="dropbtn">Recipes</a>
-                            <div class="dropdown-content">
-                                <a href="meatballs.html">Meatballs</a>
-                                <a href="pancakes.html">Pancakes</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <?php include 'parts/header.php' ?>
         </header>
 
         <div class="recipe-site">
@@ -85,13 +66,7 @@
         </div>
 
         <footer>
-            <a href="https://www.facebook.com/max.korlinge">
-                <img src="img/fb.jpg" alt="Facebook icon" class = "social-icon">
-            </a>
-            <a href="https://www.twitter.com/maxkorlinge">
-                <img src="img/twitter.png" alt="Twitter icon" class= "social-icon">
-            </a>
-            <p>&copy; 2017 <a href="http://maxk.se">Max Körlinge.</a></p>
+            <?php include 'parts/footer.php' ?>
         </footer>
     </body>
 </html>

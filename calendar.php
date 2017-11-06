@@ -10,26 +10,7 @@
     </head>
     <body>
         <header>
-            <h1>TASTY RECIPES</h1>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="calendar.html">Calendar</a>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                            <a href="#" class="dropbtn">Recipes</a>
-                            <div class="dropdown-content">
-                                <a href="meatballs.html">Meatballs</a>
-                                <a href="pancakes.html">Pancakes</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <?php include 'parts/header.php' ?>
         </header>
         <div class="calendar">
             <h3>Food Calendar</h3>
@@ -57,7 +38,7 @@
                     <tr>
                         <td>6</td>
                         <td>7</td>
-                        <td class="meatballs"><a href="meatballs.html">8</a></td>
+                        <td class="meatballs"><a href="meatballs.php">8</a></td>
                         <td>9</td>
                         <td>10</td>
                         <td>11</td>
@@ -68,7 +49,7 @@
                         <td>14</td>
                         <td>15</td>
                         <td>16</td>
-                        <td class="pancakes"><a href="pancakes.html">17</a></td>
+                        <td class="pancakes"><a href="pancakes.php">17</a></td>
                         <td>18</td>
                         <td>19</td>
                     </tr>
@@ -94,13 +75,7 @@
             </div>
         </div>
         <footer>
-            <a href="https://www.facebook.com/max.korlinge">
-                <img src="img/fb.jpg" alt="Facebook icon" class = "social-icon">
-            </a>
-            <a href="https://www.twitter.com/maxkorlinge">
-                <img src="img/twitter.png" alt="Twitter icon" class= "social-icon">
-            </a>
-            <p>&copy; 2017 <a href="http://maxk.se">Max Körlinge.</a></p>
+            <?php include 'parts/footer.php' ?>
         </footer>
     </body>
 </html>
