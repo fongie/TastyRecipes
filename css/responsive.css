@@ -89,6 +89,9 @@
         margin-top: 20px;
     }
 
+    .login-page {
+        width: 50%;
+    }
 }
 @media screen and (min-width: 1178px) { /*Big screens*/
     header h1 {
