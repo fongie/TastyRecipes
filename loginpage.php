@@ -14,7 +14,7 @@
         </header>
 
 <div class="login-page">
- <form action="/action_page.php">
+ <form action="/actions/handle_login.php" method="post">
 
   <div class="container">
     <label><b>Username</b></label>
