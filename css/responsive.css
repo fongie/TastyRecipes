@@ -29,6 +29,10 @@
         margin: auto;
     }
 
+    .header-topright {
+        margin-right: 10px;
+    }
+
     nav {
         order: -1; /*Puts it on the right of header*/
     }

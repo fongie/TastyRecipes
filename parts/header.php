@@ -1,4 +1,5 @@
 <h1>TASTY RECIPES</h1>
+<?php include 'parts/login.php' ?>
             <nav>
                 <ul>
                     <li>
