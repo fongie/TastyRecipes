@@ -7,16 +7,29 @@ session_start();
 $username = $_POST["uname"];
 $password = $_POST["psw"];
 
-#TODO: authenticate password before logging in
+# mysql connection
+$pdo = new pdo("mysql:host=localhost;dbname=tasty_recipes;charset=utf8mb4", "tasty_user", "tasty");
 
-echo "Logging in as $username...";
+# returns above 0 if found a matching username/pass combination
+$query = "SELECT COUNT(*) FROM user_accounts WHERE username='$username' AND password='$password'";
 
-# remember current username
-$_SESSION["uname"] = $username;
+$result = $pdo->query($query);
+if ($result->fetchColumn() > 0) {
+    #login
 
-#redirect to index (javascript redirect)
-echo '<script type="text/javascript">
-    window.location = "/index.php"
+    echo "Logging in as $username...";
+
+    # remember current username
+    $_SESSION["uname"] = $username;
+
+    #redirect to index (javascript redirect)
+    echo '<script type="text/javascript">
+        window.location = "/index.php"
 </script>';
+
+} else {
+    echo "Login failed. Press back button on browser to go back and try again";
+}
+
 
 ?>
