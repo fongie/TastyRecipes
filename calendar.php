@@ -38,7 +38,7 @@
                     <tr>
                         <td>6</td>
                         <td>7</td>
-                        <td class="meatballs"><a href="meatballs.php">8</a></td>
+                        <td class="meatballs"><a href="recipes/meatballs.php">8</a></td>
                         <td>9</td>
                         <td>10</td>
                         <td>11</td>
@@ -49,7 +49,7 @@
                         <td>14</td>
                         <td>15</td>
                         <td>16</td>
-                        <td class="pancakes"><a href="pancakes.php">17</a></td>
+                        <td class="pancakes"><a href="recipes/pancakes.php">17</a></td>
                         <td>18</td>
                         <td>19</td>
                     </tr>

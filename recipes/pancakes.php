@@ -3,21 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <title>Tasty Recipes</title>
-        <link rel="stylesheet" href="css/normalize.css"> <!-- used as reset -->
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="/css/normalize.css"> <!-- used as reset -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/responsive.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <header>
-            <?php include 'parts/header.php' ?>
+            <?php include '../parts/header.php' ?>
         </header>
 
         <div class="recipe-site">
             <div class="recipe">
                 <div class="recipe-header">
                     <h3>Pancakes</h3>
-                    <img alt="pancakes" src="img/pancakes.jpg">
+                    <img alt="pancakes" src="/img/pancakes.jpg">
                 </div>
 
                 <ul class="ingredient-list">
@@ -38,35 +38,12 @@
                 </ul>
             </div>
 
-            <div class="usercomments">
-                <h4>Comments:</h4>
-                <ul class="comments-list">
-                    <li>
-                        <div class="comment">
-                            <div class="username-div">
-                                <p><strong>User3451:</strong></p>
-                            </div>
-                            <div class="comment-div">
-                                <p>Nice recipe</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="comment">
-                            <div class="username-div">
-                                <p><strong>OtherUser:</strong></p>
-                            </div>
-                            <div class="comment-div">
-                                <p>This makes tasty pancakes</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <?php include '../parts/comments.php' ?>
+
         </div>
 
         <footer>
-            <?php include 'parts/footer.php' ?>
+            <?php include '../parts/footer.php' ?>
         </footer>
     </body>
 </html>

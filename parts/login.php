@@ -11,7 +11,7 @@ echo '<p class="header-topright">Logged in as ' . $_SESSION["uname"] . '</p>';
 
 # if we have not log in yet (no user name is set)
 } else {
-echo '<a class="header-topright" href="loginpage.php">Login</a>';
+echo '<a class="header-topright" href="/loginpage.php">Login</a>';
 echo $_SESSION["uname"];
 }
 

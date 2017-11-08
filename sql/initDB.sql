@@ -11,7 +11,36 @@ CREATE TABLE IF NOT EXISTS user_accounts (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
+CREATE TABLE IF NOT EXISTS recipes (
+    name VARCHAR(255) PRIMARY KEY
+    );
+
+CREATE TABLE IF NOT EXISTS comments (
+    comment_id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    user_id INTEGER,
+    recipe_name VARCHAR(255),
+    comment VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+
+    FOREIGN KEY (user_id) REFERENCES user_accounts(user_id),
+    FOREIGN KEY (recipe_name) REFERENCES recipes(name)
+    );
+
 GRANT ALL PRIVILEGES ON tasty_recipes . * TO 'tasty_user';
 FLUSH PRIVILEGES;
 
-INSERT INTO user_accounts(username, password) VALUES ('sampleUser', 'pass');
+-- Ignore makes mysql treat error as warning (if duplicate for example)
+INSERT IGNORE INTO user_accounts(username, password) 
+VALUES 
+    ('sampleUser', 'pass'),
+    ('Max', 'pass');
+
+INSERT IGNORE INTO recipes(name) VALUES ('meatballs'), ('pancakes');
+
+INSERT IGNORE INTO comments(user_id, recipe_name, comment)
+VALUES
+    (1, 'meatballs', 'Nice looking meatballs'),
+    (1, 'pancakes', 'Yummy pancakes'),
+    (2, 'meatballs', 'Best meatballs'),
+    (2, 'pancakes', 'good recipe for pancakes')
+    ;
