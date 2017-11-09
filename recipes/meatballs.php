@@ -17,7 +17,6 @@
             <?php 
             require 'recipe.php';
             RecipeSite("Meatballs");
-            include '../parts/comments.php' 
             ?>
         </div>
 
