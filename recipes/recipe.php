@@ -1,11 +1,5 @@
 <?php
 
-function makeListItems($arr) {
-    foreach($arr as $value) {
-        echo "<li>$value</li>";
-    }
-}
-
 function RecipeSite($name) {
 
     # Load XML and mysql connection
@@ -49,44 +43,49 @@ function RecipeSite($name) {
     recipeComments($recipeID, $pdo);
 }
 
+function makeListItems($arr) {
+    foreach($arr as $value) {
+        echo "<li>$value</li>";
+    }
+}
+
 function recipeComments($recipe_id, $mysql_conn) {
 
-    $recipe_id = $recipe_id + 1; #to prep for mysql query again
+    $recipe_id = $recipe_id + 1; #to prep for mysql query again instead of xml (where first item had to be 0)
 
     # Query to get username and comment rows for this specific recipe
     $query = "SELECT username, comment FROM comments JOIN user_accounts ON comments.user_id = user_accounts.user_id WHERE recipe_id = $recipe_id;";
     $res = $mysql_conn->query($query);
-    print_r($res->fetch()[1]);
 
-    #TODO IM here, now use this array from fetch() or w/e fetchcolumn to create list items.
-    #
     echo '
             <div class="usercomments">
                 <h4>Comments:</h4>
 
                 <ul class="comments-list">
+        ';
+
+    # While there are rows left in the query, fetch them as array, associated by the name of the column in the database
+    $row = $res->fetch(PDO::FETCH_ASSOC);
+    while ($row) {
+        $username = $row["username"];
+        $comment = $row["comment"];
+        echo "
                     <li>
-                        <div class="comment">
-                            <div class="username-div">
-                                <p><strong>User3451:</strong></p>
+                        <div class='comment'>
+                            <div class='username-div'>
+                                <p><strong>$username</strong></p>
                             </div>
-                            <div class="comment-div">
-                                <p>Good stuff</p>
+                            <div class='comment-div'>
+                                <p>$comment</p>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="comment">
-                            <div class="username-div">
-                                <p><strong>User3451:</strong></p>
-                            </div>
-                            <div class="comment-div">
-                                <p>Nice recipe for meatballs for me to use</p>
-                            </div>
-                        </div>
-                    </li>
+            ";
+        $row = $res->fetch(PDO::FETCH_ASSOC);
+    }
+    echo "
                 </ul>
             </div>
-';
+        ";
 }
 ?>
