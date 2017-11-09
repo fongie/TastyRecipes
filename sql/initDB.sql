@@ -12,18 +12,19 @@ CREATE TABLE IF NOT EXISTS user_accounts (
 );
 
 CREATE TABLE IF NOT EXISTS recipes (
-    name VARCHAR(255) PRIMARY KEY
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255)
     );
 
 CREATE TABLE IF NOT EXISTS comments (
     comment_id INTEGER AUTO_INCREMENT PRIMARY KEY,
     user_id INTEGER,
-    recipe_name VARCHAR(255),
+    recipe_id INTEGER,
     comment VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
 
     FOREIGN KEY (user_id) REFERENCES user_accounts(user_id),
-    FOREIGN KEY (recipe_name) REFERENCES recipes(name)
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id)
     );
 
 GRANT ALL PRIVILEGES ON tasty_recipes . * TO 'tasty_user';
@@ -37,10 +38,10 @@ VALUES
 
 INSERT IGNORE INTO recipes(name) VALUES ('meatballs'), ('pancakes');
 
-INSERT IGNORE INTO comments(user_id, recipe_name, comment)
+INSERT IGNORE INTO comments(user_id, recipe_id, comment)
 VALUES
-    (1, 'meatballs', 'Nice looking meatballs'),
-    (1, 'pancakes', 'Yummy pancakes'),
-    (2, 'meatballs', 'Best meatballs'),
-    (2, 'pancakes', 'good recipe for pancakes')
+    (1, 1, 'Nice looking meatballs'),
+    (1, 2, 'Yummy pancakes'),
+    (2, 1, 'Best meatballs'),
+    (2, 2, 'good recipe for pancakes')
     ;

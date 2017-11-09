@@ -1,7 +1,6 @@
 <?php
 
 function makeListItems($arr) {
-    echo 
     foreach($arr as $value) {
         echo "<li>$value</li>";
     }
@@ -9,13 +8,21 @@ function makeListItems($arr) {
 
 function RecipeSite($name) {
 
+    # Load XML and mysql connection
     $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/recipes/xml/recipes.xml');
     //print_r($xml);
+    $pdo = new pdo("mysql:host=localhost;dbname=tasty_recipes;charset=utf8mb4", "tasty_user", "tasty");
 
-    $title = $xml->recipe[0]->title;
-    $image = $xml->recipe[0]->imagepath;
-    $ingredients = $xml->recipe[0]->ingredient->li;
-    $instructions = $xml->recipe[0]->recipetext->li;
+    # Find current recipe ID. This ID MUST be the same position as the recipes appear in the xml recipes.xml
+    $query = 'SELECT id FROM recipes WHERE name="'. $name .'"';
+    $res = $pdo->query($query);
+    $recipeID = $res->fetchColumn() - 1;
+
+    # Pick out the XML tags we want and put them into variables ready to use
+    $title = $xml->recipe[$recipeID]->title;
+    $image = $xml->recipe[$recipeID]->imagepath;
+    $ingredients = $xml->recipe[$recipeID]->ingredient->li;
+    $instructions = $xml->recipe[$recipeID]->recipetext->li;
 
     echo 
         "<div class='recipe'>
@@ -28,7 +35,6 @@ function RecipeSite($name) {
                     <li class='li-heading'><h4>Ingredients</h4></li>";
 
     makeListItems($ingredients);
-
     echo    
                 "</ul>
 
@@ -36,7 +42,6 @@ function RecipeSite($name) {
                     <li class='li-heading'><h4>Instructions:</h4>";
 
     makeListItems($instructions);
-
     echo
                 "</ul>
             </div>";

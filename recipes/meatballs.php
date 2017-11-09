@@ -13,12 +13,12 @@
             <?php include '../parts/header.php' ?>
         </header>
 
-        <?php require 'recipe.php' ?>
-
         <div class="recipe-site">
-        <?php RecipeSite("Meatballs"); ?>
-
-            <?php include '../parts/comments.php' ?>
+            <?php 
+            require 'recipe.php';
+            RecipeSite("Meatballs");
+            include '../parts/comments.php' 
+            ?>
         </div>
 
         <footer>
