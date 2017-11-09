@@ -16,7 +16,7 @@
 <div class="login-page">
  <form action="/actions/handle_login.php" method="post">
 
-  <div class="container">
+  <div class="login-container">
     <label><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -27,7 +27,7 @@
     <input type="checkbox" checked="checked"> Remember me
   </div>
 
-  <div class="container" style="background-color:#b3b3ff">
+  <div class="login-container" style="background-color:#b3b3ff">
     <button type="button" class="w3cbutton cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>

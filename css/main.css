@@ -193,7 +193,7 @@
 	}
 
 	/* Add padding to containers */
-	.container {
+	.login-container {
 		padding: 16px;
 	}
 
@@ -369,3 +369,11 @@
 		padding: 0;
 		margin: 0;
 	}
+    .comment-form {
+        border: none;
+    }
+    .comment-form-container {
+        width: 50%;
+        margin: auto;
+
+    }

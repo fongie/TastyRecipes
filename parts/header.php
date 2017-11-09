@@ -1,5 +1,8 @@
 <h1>TASTY RECIPES</h1>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/parts/login.php' ?>
+<?php 
+    require $_SERVER['DOCUMENT_ROOT'].'/parts/login.php';
+    loginHeader();
+?>
             <nav>
                 <ul>
                     <li>
