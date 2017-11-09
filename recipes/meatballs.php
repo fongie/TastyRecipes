@@ -13,7 +13,7 @@
             <?php include '../parts/header.php' ?>
         </header>
 
-<?php include 'recipe.php' ?>
+        <?php require 'recipe.php' ?>
 
         <div class="recipe-site">
         <?php RecipeSite("Meatballs"); ?>
