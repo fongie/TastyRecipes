@@ -81,15 +81,15 @@ function recipeComments($recipe_id, $mysql_conn) {
     echo "</ul>";
 
     # You can post comments only if logged in (requires login.php file somewhere (its required in header now))
-    # TODO: write post_comment.php file to post the comment
     if (loggedIn()) {
+        echo $_SESSION["uname"];
         echo '<form class="comment-form" action="/actions/post_comment.php" method="post">
             <div class="comment-form-container">
             <input type="text" placeholder="Write your comment here!" name="postcomment" required>
             <button class "w3cbutton" type="submit">Send</button>
             </div>';
     } else {
-        echo 'NOT LOGGED IN';
+        echo 'Log in to post a comment!';
     }
     echo "</div>";
 }
