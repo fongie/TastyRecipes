@@ -15,7 +15,7 @@
 
 <div class="login-page">
 <h3>Register New User</h3>
- <form action="/actions/handle_login.php" method="post">
+ <form action="/actions/handle_registration.php" method="post">
   <div class="login-container">
     <label><b>Username</b></label>
     <input type="text" placeholder="Choose a username" name="uname" required>
