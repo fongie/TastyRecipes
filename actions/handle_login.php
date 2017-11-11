@@ -22,14 +22,18 @@ if ($result->fetchColumn() > 0) {
     # remember current username
     $_SESSION["uname"] = $username;
 
-    #redirect to index (javascript redirect)
+    #redirect to previous page if set, or to index page, if prev page is not set
+    if (!empty($_SESSION['previous_page'])) {
+echo '<script type="text/javascript">
+    window.location = "'.$_SESSION['previous_page'].'"
+    </script>';
+    } else {
     echo '<script type="text/javascript">
         window.location = "/index.php"
 </script>';
+    }
 
 } else {
     echo "Login failed. Press back button on browser to go back and try again";
 }
-
-
 ?>

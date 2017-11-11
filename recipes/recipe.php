@@ -18,6 +18,8 @@ function RecipeSite($name) {
     $ingredients = $xml->recipe[$recipeID]->ingredient->li;
     $instructions = $xml->recipe[$recipeID]->recipetext->li;
 
+    # To enable redirecting back to page when f.e a comment is posted
+    $_SESSION['previous_page'] = '/recipes/'.strtolower($name).'.php';
     echo 
         "<div class='recipe'>
                 <div class='recipe-header'>
@@ -82,10 +84,10 @@ function recipeComments($recipe_id, $mysql_conn) {
 
     # You can post comments only if logged in (requires login.php file somewhere (its required in header now))
     if (loggedIn()) {
-        echo $_SESSION["uname"];
         echo '<form class="comment-form" action="/actions/post_comment.php" method="post">
             <div class="comment-form-container">
             <input type="text" placeholder="Write your comment here!" name="postcomment" required>
+            <input type="hidden" value="'.$recipe_id.'" name="recipeID">
             <button class "w3cbutton" type="submit">Send</button>
             </div>';
     } else {
