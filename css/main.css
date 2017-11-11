@@ -360,12 +360,15 @@
 		background-color: #b3b3ff;
 	}
 	.comment-div {
+        display: flex;
 		width: 70%;
 		text-align: center;
 		padding: 1em 10px 1em 10px;
 		background-color: #ccccff;
 	}
 	.comment-div p {
+        display: block;
+        width: 90%;
 		padding: 0;
 		margin: 0;
 	}

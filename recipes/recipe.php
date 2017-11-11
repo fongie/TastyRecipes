@@ -53,7 +53,7 @@ function recipeComments($recipe_id, $mysql_conn) {
     $recipe_id = $recipe_id + 1; #to prep for mysql query again instead of xml (where first item had to be 0)
 
     # Query to get username and comment rows for this specific recipe
-    $query = "SELECT username, comment FROM comments JOIN user_accounts ON comments.user_id = user_accounts.user_id WHERE recipe_id = $recipe_id;";
+    $query = "SELECT comment_id, username, comment FROM comments JOIN user_accounts ON comments.user_id = user_accounts.user_id WHERE recipe_id = $recipe_id;";
     $res = $mysql_conn->query($query);
 
     echo '<div class="usercomments">
@@ -66,6 +66,7 @@ function recipeComments($recipe_id, $mysql_conn) {
     while ($row) {
         $username = $row["username"];
         $comment = $row["comment"];
+        $commentID = $row["comment_id"];
         echo "
             <li>
                 <div class='comment'>
@@ -74,7 +75,18 @@ function recipeComments($recipe_id, $mysql_conn) {
                     </div>
                     <div class='comment-div'>
                         <p>$comment</p>
-                    </div>
+                    ";
+        #add delete button on comments written by the currently logged in user
+        if ($username === $_SESSION["uname"]) {
+            echo '<div class="delete-div">
+                    <form action="/actions/delete_comment.php" method="post">
+                        <input type="hidden" value="'.$commentID.'" name="commentID">
+                        <input type="submit" value="Delete">
+                    </form>
+                </div>';
+        }
+
+        echo "</div>
                 </div>
             </li>
             ";
@@ -91,7 +103,7 @@ function recipeComments($recipe_id, $mysql_conn) {
             <button class "w3cbutton" type="submit">Send</button>
             </div>';
     } else {
-        echo 'Log in to post a comment!';
+        echo '<a href="/login_page.php">Log in</a> to post a comment!';
     }
     echo "</div>";
 }
