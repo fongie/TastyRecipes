@@ -21,9 +21,6 @@ $insertComment = 'INSERT INTO comments(recipe_id, user_id, comment) VALUES ('.$r
 $res = $pdo->query($insertComment);
 
 echo "Posting your comment, page will redirect automatically when finished. If it doesn't, click your browsers back button.";
-
-#javascript redirect
-echo '<script type="text/javascript">
-    window.location = "'.$_SESSION['previous_page'].'"
-    </script>';
+require_once $_SERVER['DOCUMENT_ROOT'].'/actions/redirects.php';
+redirect_to_previous_page();
 ?>

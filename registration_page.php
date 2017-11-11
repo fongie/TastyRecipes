@@ -14,23 +14,18 @@
         </header>
 
 <div class="login-page">
+<h3>Register New User</h3>
  <form action="/actions/handle_login.php" method="post">
-
   <div class="login-container">
     <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Choose a username" name="uname" required>
 
     <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Choose a password" name="psw" required>
 
-    <button class "w3cbutton" type="submit">Login</button>
-    <input type="checkbox" checked="checked"> Remember me
+    <button class "w3cbutton" type="submit">Register</button>
   </div>
 
-  <div class="login-container" style="background-color:#b3b3ff">
-    <button type="button" class="w3cbutton cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
 </form> 
 
 </div>

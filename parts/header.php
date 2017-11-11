@@ -1,6 +1,6 @@
 <h1>TASTY RECIPES</h1>
 <?php 
-    require $_SERVER['DOCUMENT_ROOT'].'/parts/login.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/parts/login.php';
     loginHeader();
 ?>
             <nav>
