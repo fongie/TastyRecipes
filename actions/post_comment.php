@@ -16,6 +16,6 @@ echo $comment;
 # mysql connection
 $pdo = new pdo("mysql:host=localhost;dbname=tasty_recipes;charset=utf8mb4", "tasty_user", "tasty");
 
-$query = "";
+$query = "INSERT INTO comments(user_id, comment"; #TODO
 
 ?>
