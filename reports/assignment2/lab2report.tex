@@ -55,7 +55,7 @@ To complete the task I first studied the course lecture notes on the PHP languag
 
 \section{Task 1}
 
-To implement authentication I created a new login page with a form that submits to a php script. The script uses PDO to make a connection to the mySQL database I setup to check wheither there is a matching username - password entry in the database. I use the \code{$_SESSION} variable to store the username and implemented a check in the header included in every page if the user is logged in or not. To clarify for the user that there is loading going on a redirection page was implemented, telling the user what is happening.
+To implement authentication I created a new login page with a form that submits to a php script. The script uses PDO to make a connection to the mySQL database I setup to check wheither there is a matching username - password entry in the database using a SQL query. I use the \code{$_SESSION} variable to store the username and implemented a check in the header included in every page if the user is logged in or not. To clarify for the user that there is loading going on a redirection page was implemented, telling the user what is happening.
 
 \section{Task 2}
 
@@ -74,55 +74,34 @@ To register new users I added a new page for registrations which is very similar
 To store the recipes in XML I used the provided mycookbook template to convert my recipes stored in HTML to properly matching XML tags for this template. I chose to put all recipes in the same xml file, to preserve an order which also could be used to find a matching recipe ID for the database. For example, the first recipe in the XML file has recipe_id 1 in the database. I used SimpleXML to parse the XML, and rewrote the recipe sites to call a PHP file called recipe.php with a function \code{RecipeSite($name)} where you can input the name of a recipe in the database, and it will be output the contents correctly to the site.
 
 
--TODO
 \chapter{Result}
 \label{sec:result}
 
+The git repository can be found at https://github.com/fongie/TastyRecipes/tree/assignment2
+
+\section{Task 1}
+
+A login screen is provided (Fig. \ref{login}) and a PHP script checks the mysql database for a matching username and password combination, as seen in Fig \ref{logincode}. The query will always yield 1 or 0 since usernames are unique in the database, so if it gives a result higher than zero then the user is authenticated.
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[scale=0.41]{img/login.png}
+    \caption{The login page.}
+    \label{fig:login}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[scale=0.41]{img/loginpage.png}
+    \caption{Part of the PHP script executing on submitting login form}
+    \label{fig:loginpage}
+  \end{center}
+\end{figure}
+
 \section{Task 2}
 
-The git repository can be found at https://github.com/fongie/TastyRecipes/tree/assignment2
-The site contains the parts specified in the assignment: a welcoming home page (Fig. \ref{fig:design}), a calendar page with two recipes, and a page each for the recipes themselves.
-
-\begin{figure}[h!]
-  \begin{center}
-    \includegraphics[scale=0.41]{design.png}
-    \caption{The index page, showing navbar hover.}
-    \label{fig:design}
-  \end{center}
-\end{figure}
-
-All files passed the W3C validation, as shown in Figure \ref{fig:htmlvalidations} and \ref{fig:cssvalidations}. The files were also tested individually, as opposed to providing just the URL.
-
-\begin{figure}[h!]
-  \begin{center}
-    \includegraphics[scale=0.41]{htmlval/html_checks.jpeg}
-    \caption{All W3C html validations.}
-    \label{fig:htmlvalidations}
-  \end{center}
-\end{figure}
-
-\begin{figure}[h!]
-  \begin{center}
-    \includegraphics[scale=0.41]{cssval/css_checks.jpeg}
-    \caption{All W3C css validations.}
-    \label{fig:cssvalidations}
-  \end{center}
-\end{figure}
-
-
 \section{Task 3}
-
-Visibility of system status was considered but not found applicable for the site. Currently the site is completely static and does not have anything going on other than moving between static pages, so no loading or new elements appearing on the same site, and thus there is no real system status that needs to be shown to the user. Later I imagine there will be, when user will be able to post comments for example, the user would need to be told if the comment is being posted, failed to be posted, or was successfully posted.
-
-A match between system and real world was sought after by not using any technical terms. The index page is called "Home", and in general there are normal, non-technical, words used throughout the site.
-
-When it comes to consistency and standards the layout is fairly conventional as the navigation can be found somewhere at the top and in a bar of some sort. Also, all links are clearly displayed as buttons or images and the "pointer" cursor is used when hovering over links.
-
-Recognition rather than recall is maintained mainly by the navbar, since all pages are always accessible through the navbar there is no need for the user to memorize how they got somewhere on the site.
-
-The design is aestethic and minimalistic, using a sparse color palette of white and blue with only one alert-type red button. There is no eccess images or text floating about that do not add to the content or usability of the site. You are always only one or two clicks away from a recipe, and when arriving at the recipe you only have a picture of the food and bulleted lists of ingredients and how to make it.
-
-\section{Task 4}
 
 Although I unfortunately could not test Safari 9 I did test the others and it appears to be the same. I chose to display the Calendar page here since I think it might be the one that has the most complex css that could prevent compatibility, see Figure \ref{fig:compcheck}. Since I used different tools it was not possible to get them all at the same resolutions, but it is clear that they appear the same in all browsers nevertheless.
 
