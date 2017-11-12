@@ -81,7 +81,7 @@ The git repository can be found at https://github.com/fongie/TastyRecipes/tree/a
 
 \section{Task 1}
 
-A login screen is provided (Fig. \ref{login}) and a PHP script checks the mysql database for a matching username and password combination, as seen in Fig \ref{logincode}. The query will always yield 1 or 0 since usernames are unique in the database, so if it gives a result higher than zero then the user is authenticated. To give user feedback on system status, it is clearly stated that the system is logging you in, until the query is finished. Also, when you are logged in, it clearly says so at the top right of the screen.
+A login screen is provided (Fig. \ref{fig:login}) and a PHP script checks the mysql database for a matching username and password combination, as seen in Fig \ref{fig:logincode}. The query will always yield 1 or 0 since usernames are unique in the database, so if it gives a result higher than zero then the user is authenticated. To give user feedback on system status, it is clearly stated that the system is logging you in, until the query is finished. Also, when you are logged in, it clearly says so at the top right of the screen. This is persistent as long as the session is active, since the logged-in script is present in the header of each page.
 
 \begin{figure}[h!]
   \begin{center}
@@ -101,44 +101,68 @@ A login screen is provided (Fig. \ref{login}) and a PHP script checks the mysql 
 
 \section{Task 2}
 
-\section{Task 3}
+Comments are fetched from the database and rendered into each recipe page. If the user is logged in, there is also a form at the bottom of the page where the user can enter a comment. The comment is stored in the database together with the user ID who posted it, and the page reloads to show the new comment. The page is shown in Figure \ref{fig:comments}.
 
-Although I unfortunately could not test Safari 9 I did test the others and it appears to be the same. I chose to display the Calendar page here since I think it might be the one that has the most complex css that could prevent compatibility, see Figure \ref{fig:compcheck}. Since I used different tools it was not possible to get them all at the same resolutions, but it is clear that they appear the same in all browsers nevertheless.
+The design of the form is in line with the rest of the website, and when a comment is being posted the user is shown a message, so that they know what is going on.
 
 \begin{figure}[h!]
   \begin{center}
-    \includegraphics[scale=0.41]{compatability_check.jpg}
-    \caption{Top left: Chrome 55, Top Right: Firefox 50, Bottom left: IE 10}
-    \label{fig:compcheck}
+    \includegraphics[scale=0.41]{img/comments.png}
+    \caption{Comments on the website, showing the form to enter new comment and the option to delete old comments.}
+    \label{fig:comments}
+  \end{center}
+\end{figure}
+
+\section{Task 3}
+
+As shown in Figure \ref{fig:comments} there is an option to delete one's own comments. As the recipe page renders all comments from the database, it adds the delete button to comments that have been posted by the same user that is currently logged in (Figure \ref{fig:delete}.
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[scale=0.41]{img/delete.png}
+    \caption{Code that adds the delete button.}
+    \label{fig:delete}
   \end{center}
 \end{figure}
 
 \section{Optional Task 1}
 
-The site was actually first designed for small resolution and later expanded to larger resolutions, by for example making some fonts larger, some images take less proportion of the screen, and moving the navbar to the left of the header. You can see the full size in Figure \ref{fig:design}, and the mobile version in Figure \ref{fig:mobversion}.
+New users are registered on a new page very similar to the login page shown in Figure \ref{fig:login}, only substituting the headline and the input text telling the users to write their own new username and password. If the username does not already exist, it is added to the database by a php script using a SQL query shown in Figure \ref{fig:register}. While the request is being processed, the user is shown a message, to clearly state the system status.
 
 \begin{figure}[h!]
   \begin{center}
-    \includegraphics[scale=0.41]{mobversion.png}
-    \caption{The mobile version.}
-    \label{fig:mobversion}
+    \includegraphics[scale=0.41]{img/register.png}
+    \caption{Code that adds the delete button.}
+    \label{fig:register}
   \end{center}
 \end{figure}
 
 \section{Optional Task 2}
 
-The site has alt texts for all images and does not rely on color for example for highlighting things. When hovering over the calendar for example, it does not show where you are by changing color, but instead by giving the current cell a shadow which makes the cell "pop". As shown above all HTML and CSS was validated and thus used properly, and also as discussed previously, the navbar provides clear navigation mechanisms by always being present at a predictable place, and having links to all available pages.
+Recipes are stored in a single file recipe.xml. It uses the mycookbook template provided in the assignment. The XML is loaded using SimpleXML parser, where you then easily can pick out the values to the keys you want, and render them into the page. This is done in a function called \code{RecipeSite($name)} which is called in each recipe site. You can see the part where the XML is parsed to PHP variables in Figure \ref{fig:recipesite}.
+
+\begin{figure}[h!]
+  \begin{center}
+    \includegraphics[scale=0.41]{img/recipesite.png}
+    \caption{Code that adds the delete button.}
+    \label{fig:recipesite}
+  \end{center}
+\end{figure}
 
 \chapter{Discussion}
 
-kom ihåg att påpeka att receptsidorna kunde vara mer dynamiskt genererade, men att det uppfyller kraven
+I completed all tasks for this assignment, as shown in the Result chapter above. A requirement throughout the tasks were to keep the five basic heuristics for user interface designed. In seminar one I found that some of them were hard to apply to the tasks, but this time especially one has been more prominent and that is the one concerning showing the user the system's status. I have solved this by showing the user that they are logged in in the header of the page, and by echoing a message to the message telling them that a request is being processed every time a connection to the database is being made and some loading time could occur, such as when the user logs in, registers, and posts or deletes a comment.
 
+When authenticating the user I decided to use the \code{$_SESSION} variable to make the login persist across pages and over the whole browser session. I am aware that you could also accomplish this by using browser cookies, and then you could also have the login persist even after closing down and reopening the browser. I think both ways have merits, and my decision to use this method was circumstantial. It would not be difficult to change to using cookies if required at some point.
+
+When dealing with comments on the recipe pages I moved big parts of the recipe pages to PHP functions that dynamically render the data respective to each recipe. I still kept the two pages for the recipes as files in the project, and an improvement would be to render each page according to how many recipes there are in the database, eliminating the need for one PHP file for each recipe. I decided not to do this because of time constraints and because it was not mentioned in the requirements.
+
+I decided early on to use a mySQL database because I wanted to learn how to do it, and also knowing that it is a task in a future assignment. I am also currently studying a course on databases. Because of this decision, I think, some tasks were easily implemented once the structure was on place. For example, deleting comments was as easy as a simple if clause in the code, together with a one-line SQL query. Also, registering new users was very simple, once I knew how to interact with the database through PHP, a short mySQL query to insert the data.
+
+Working with XML was not so difficult since it is so similar to HTML, and the SimpleXML parser made it possible to retrieve values through keys corresponding to the XML tags. I used the mycookbook template, but in the end I could remove a majority of the tags and stick with a few ones that seemed appropriate, such as imageURL, recipeText and ingredients.
 
 \chapter{Comments About the Course}
 
-This is a fun and practical assignment. I found the required browsers to check really hard to find on any online tool, which was a little frustrating.
-
-I spent about 15 hours on this assignment.
-
+I spent about 30 hours on this assignment. It was interesting to finally find out how server side code works. I found that going from the first to the second assignment to lead to very unstructured code, with mixed HTML and PHP code everywhere, despite trying to follow the lecture notes on architecture. I look forward to clean this mess up in the next assignment.
 
 \end{document}
