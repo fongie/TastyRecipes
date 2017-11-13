@@ -1,6 +1,6 @@
 <h1>TASTY RECIPES</h1>
 <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'].'/parts/login.php';
+    require_once $_SERVER['DOCUMENT_ROOT'].'/src/view/parts/login.php';
     loginHeader();
 ?>
             <nav>
@@ -9,7 +9,7 @@
                         <a href="/index.php">Home</a>
                     </li>
                     <li>
-                        <a href="/calendar.php">Calendar</a>
+                        <a href="/src/view/calendar.php">Calendar</a>
                     </li>
                     <li>
                         <div class="dropdown">
