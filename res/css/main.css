@@ -270,7 +270,7 @@
 	}
 	.meatballs {
 		border-radius: 20%;
-		background-image: url("../img/meatballs.jpg");
+		background-image: url("/res/img/meatballs.jpg");
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
@@ -279,7 +279,7 @@
 	}
 	.pancakes {
 		border-radius: 20%;
-		background-image: url("../img/pancakes.jpg");
+		background-image: url("/res/img/pancakes.jpg");
 		background-size: cover;
 		background-repeat: no-repeat;
 		background-position: 50% 50%;

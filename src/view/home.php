@@ -10,10 +10,10 @@
 
         <section id="home">
             <h3 class="hidden">Home Page</h3>
-            <a href="calendar.php">
-                <img alt="table with tomatoes pasta and a wooden spoon, linking to calendar site" src="/img/home1.jpg">
+            <a href="/src/view/calendar.php">
+                <img alt="table with tomatoes pasta and a wooden spoon, linking to calendar site" src="/res/img/home1.jpg">
             </a>
-            <a class="button" href="calendar.php">Check out the recipe of the day!</a>
+            <a class="button" href="/src/view/calendar.php">Check out the recipe of the day!</a>
         </section>
 
         <footer>

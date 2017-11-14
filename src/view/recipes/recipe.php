@@ -3,7 +3,7 @@
 function RecipeSite($name) {
 
     # Load XML and mysql connection
-    $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/recipes/xml/recipes.xml');
+    $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/res/xml/recipes.xml');
     //print_r($xml);
     $pdo = new pdo("mysql:host=localhost;dbname=tasty_recipes;charset=utf8mb4", "tasty_user", "tasty");
 

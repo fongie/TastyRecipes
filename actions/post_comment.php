@@ -1,7 +1,5 @@
 <?php
 
-# maybe break out all comment functions to new file?
-
 # "you just need to call session_start at every http request to keep the session intact" seems to work, why?
 # needed to preserve username
 session_start();

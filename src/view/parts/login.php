@@ -18,8 +18,8 @@ function loginHeader() {
     if (loggedIn()) { 
         echo '<p class="header-topright">Logged in as ' . $_SESSION["uname"] . '</p>';
     } else {
-        echo '<a class="header-topright" href="/registration_page.php">Register</a>';
-        echo '<a class="header-topright" href="/login_page.php">Login</a>';
+        echo '<a class="header-topright" href="/src/view/registration_page.php">Register</a>';
+        echo '<a class="header-topright" href="/src/view/login_page.php">Login</a>';
         echo $_SESSION["uname"];
     }
 }
