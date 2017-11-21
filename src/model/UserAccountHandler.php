@@ -17,12 +17,34 @@ class UserAccountHandler {
             # remember current username
             $this->username = $username;
             $this->loggedIn = true;
-            $_SESSION["uname"] = $username;
         }
     }
-    
+
     public function loggedIn() {
         return $this->loggedIn;
+    }
+
+    /** Register new user account in the database
+     * Returns true on success, false on failure
+     */
+    public function registerNewUser($username, $password) {
+        $db = new DatabaseRequest();
+        $success = $db->addNewUser($username, $password);
+
+        # If succeeded, also log in
+        if ($success) {
+            $this->username = $username;
+            $this->loggedIn = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /** Get currently logged in username
+     */
+    public function getUsername() {
+        return $this->username;
     }
 }
 ?>

@@ -26,6 +26,24 @@ class DatabaseRequest {
             return false;
         }
     }
+
+    /** Try to add a new user to user_accounts table
+     *  Returns true if successful, false if unsuccessful
+     */
+    public function addNewUser($username, $password) {
+
+        $query = "SELECT COUNT(*) FROM user_accounts WHERE username='$username'";
+        $result = $this->conn->query($query);
+        if ($result->fetchColumn() > 0) {
+            return false;
+
+        # If not, add user to table
+        } else {
+            $insertAccount = "INSERT INTO user_accounts(username, password) VALUES ('$username', '$password');";
+            $this->conn->query($insertAccount);
+            return true;
+        }
+    }
 }
 
 ?>

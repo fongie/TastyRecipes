@@ -18,9 +18,8 @@ class Util {
 
     public static function redirectTo($path) {
         echo '<script type="text/javascript">
-            window.location = "'.$path.'"
+            window.location = "/src/view/'.$path.'"
             </script>';
     }
-
 }
 ?>

@@ -4,10 +4,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/src/model/UserAccountHandler.php';
 class Controller {
     private $uaHandler; //user account handler
 
-    public function sayHi() {
-        echo 'controller says hi';
-    }
-
     /** Constructor
      */
     public function __construct() {
@@ -49,8 +45,12 @@ class Controller {
         return $this->uaHandler->loggedIn();
     }
 
-    public function register($username, $password) {
+    public function getUsername() {
+        return $this->uaHandler->getUsername();
+    }
 
+    public function register($username, $password) {
+        return $this->uaHandler->registerNewUser($username, $password);
     }
 
     public function recipeSiteContent($recipeName) {

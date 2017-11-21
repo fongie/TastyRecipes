@@ -11,11 +11,11 @@ function loginHeader() {
     $loggedIn = $cntr->getLoggedIn();
 
     if ($loggedIn) { 
-        echo '<p class="header-topright">Logged in as ' . $_SESSION["uname"] . '</p>';
+        $username = $cntr->getUsername();
+        echo '<p class="header-topright">Logged in as ' . $username . '</p>';
     } else {
         echo '<a class="header-topright" href="/src/view/registration_page.php">Register</a>';
         echo '<a class="header-topright" href="/src/view/login_page.php">Login</a>';
-        echo $_SESSION["uname"];
     }
 }
 
