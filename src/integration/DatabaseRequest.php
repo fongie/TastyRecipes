@@ -53,5 +53,22 @@ class DatabaseRequest {
         $res = $this->conn->query($query);
         return $res->fetchColumn();
     }
+
+    /** Query to get username and comment rows for this specific recipe
+     *  Returns the response as an Array of Arrays, each child array containing keys "username", "comment", and "comment_id"
+     */
+    public function fetchComments($recipeName) {
+        $query = 'SELECT comment_id, username, comment FROM comments JOIN user_accounts ON comments.user_id = user_accounts.user_id JOIN recipes ON comments.recipe_id = recipes.id WHERE recipes.name="'.$recipeName .'"';
+        $res = $this->conn->query($query);
+
+        $comments = array();
+        $row = $res->fetch(PDO::FETCH_ASSOC);
+        while ($row) {
+            array_push($comments, $row);
+            $row = $res->fetch(PDO::FETCH_ASSOC);
+        }
+        
+        return $comments;
+    }
 }
 ?>

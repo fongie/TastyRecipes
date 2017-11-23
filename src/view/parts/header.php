@@ -15,8 +15,8 @@
                         <div class="dropdown">
                             <a href="#" class="dropbtn">Recipes</a>
                             <div class="dropdown-content">
-                                <a href="/src/view/recipes/meatballs.php">Meatballs</a>
-                                <a href="/src/view/recipes/pancakes.php">Pancakes</a>
+                                <a href="/src/view/recipe.php?name=meatballs">Meatballs</a>
+                                <a href="/src/view/recipe.php?name=pancakes">Pancakes</a>
                             </div>
                         </div>
                     </li>

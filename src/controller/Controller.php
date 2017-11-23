@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/src/model/RecipeSite.php';
 
 class Controller {
     private $uaHandler; //user account handler
-    private $currentRecipeSite;
+    private $currentRecipeSite; //instance of current recipesite
 
     /** Constructor
      */
@@ -71,8 +71,11 @@ class Controller {
     public function getRecipeInstructions() {
         return $this->currentRecipeSite->getInstructions();
     }
-    public function recipeSiteComments($recipeName) {
-
+    public function getRecipeSiteComments() {
+        return $this->currentRecipeSite->getComments();
+    }
+    public function getRecipeSiteID() {
+        return $this->currentRecipeSite->getID();
     }
     public function postComment($commentText) {
 
