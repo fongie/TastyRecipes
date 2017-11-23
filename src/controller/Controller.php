@@ -79,7 +79,7 @@ class Controller {
     }
     public function postComment($commentText) {
         $username = $this->uaHandler->getUsername();
-        return $this->currentRecipeSite->postComment($username, $commentText);
+        $this->currentRecipeSite->postComment($username, $commentText);
     }
     public function deleteComment($commentID) {
     }
