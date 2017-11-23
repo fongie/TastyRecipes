@@ -16,6 +16,21 @@ class CommentSection {
     public function getComments() {
         return $this->comments;
     }
+
+    public function postComment($recipeID, $username, $comment) {
+
+        # mysql connection
+        $pdo = new pdo("mysql:host=localhost;dbname=tasty_recipes;charset=utf8mb4", "tasty_user", "tasty");
+
+        $findUserID = 'SELECT user_id FROM user_accounts WHERE username="'.$username.'";';
+        $res = $pdo->query($findUserID);
+        $userID = $res->fetch()[0]; #because username is unique this always fetches exactly 1 value
+
+        $insertComment = 'INSERT INTO comments(recipe_id, user_id, comment) VALUES ('.$recipeID.', '.$userID.', "'.$comment.'");';
+        $res = $pdo->query($insertComment);
+        return true;
+        //echo $res;
+    }
 }
 
 ?>

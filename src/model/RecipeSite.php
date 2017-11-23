@@ -50,9 +50,10 @@ class RecipeSite {
     public function getComments() {
         return $this->commentSection->getComments();
     }
-    public function postComment($text) {
-
+    public function postComment($username, $text) {
+        return $this->commentSection->postComment($ID, $username, $text);
     }
+
     public function deleteComment($commentID) {
 
     }
