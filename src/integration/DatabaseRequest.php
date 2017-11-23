@@ -70,5 +70,14 @@ class DatabaseRequest {
         
         return $comments;
     }
+    public function insertComment($recipeID, $username, $comment) {
+
+        $findUserID = 'SELECT user_id FROM user_accounts WHERE username="'.$username.'";';
+        $res = $this->conn->query($findUserID);
+        $userID = $res->fetch()[0]; #because username is unique this always fetches exactly 1 value
+
+        $insertComment = 'INSERT INTO comments(recipe_id, user_id, comment) VALUES ('.$recipeID.', '.$userID.', "'.$comment.'");';
+        $res = $this->conn->query($insertComment);
+    }
 }
 ?>

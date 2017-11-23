@@ -12,7 +12,7 @@ $comments = $cntr->getRecipeSiteComments();
 $recipeID = $cntr->getRecipeSiteID();
 
 # To enable redirecting back to this page when f.e a comment is posted
-$_SESSION['previous_page'] = '/src/view/recipes/'.strtolower($name).'.php';
+$_SESSION['previous_page'] = "/src/view/recipe.php?name=$name";
 
 echo 
     "<div class='recipe'>
@@ -40,7 +40,7 @@ foreach($instructions as $instruction) {
                 <ul class="comments-list">';
 foreach ($comments as $comment) {
     $username = $comment["username"];
-    $comment = $comment["comment"];
+    $commentText = $comment["comment"];
     $commentID = $comment["comment_id"];
     echo "
         <li>
@@ -49,10 +49,10 @@ foreach ($comments as $comment) {
                     <p><strong>$username</strong></p>
                 </div>
                 <div class='comment-div'>
-                    <p>$comment</p>
+                    <p>$commentText</p>
                 ";
     #add delete button on comments written by the currently logged in user
-    if ($username === $_SESSION["uname"]) {
+    if ($username === $cntr->getUsername()) {
         echo '<div class="delete-div">
             <form action="/src/view/requests/delete_comment.php" method="post">
             <input type="hidden" value="'.$commentID.'" name="commentID">

@@ -51,7 +51,7 @@ class RecipeSite {
         return $this->commentSection->getComments();
     }
     public function postComment($username, $text) {
-        return $this->commentSection->postComment($ID, $username, $text);
+        $this->commentSection->postComment($this->ID, $username, $text);
     }
 
     public function deleteComment($commentID) {
@@ -71,6 +71,12 @@ class RecipeSite {
         $this->image = $xml->recipe[$recipeID]->imagepath;
         $this->ingredients = $xml->recipe[$recipeID]->ingredient->li;
         $this->instructions = $xml->recipe[$recipeID]->recipetext->li;
+
+        # Turn all SimpleXMLobjects into native objects so it can be serialized and stored
+        $this->title = (string) $this->title;
+        $this->image = (string) $this->image;
+        $this->ingredients = (array) $this->ingredients;
+        $this->instructions = (array) $this->instructions;
     }
     private function fetchComments($recipeName) {
         $this->commentSection = new CommentSection($recipeName);

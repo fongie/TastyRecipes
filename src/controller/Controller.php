@@ -78,9 +78,8 @@ class Controller {
         return $this->currentRecipeSite->getID();
     }
     public function postComment($commentText) {
-        //echo 'POSTING COMM FROM CNTR';
         $username = $this->uaHandler->getUsername();
-        return $this->currentRecipeSite->postComment($username, $commentText);
+        $this->currentRecipeSite->postComment($username, $commentText);
     }
     public function deleteComment($commentID) {
     }
