@@ -1,44 +1,41 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/src/integration/DatabaseRequest.php';
 
 class RecipeSite {
-    $title;
-    $image;
-    $ingredients;
-    $instructions;
+    private $title;
+    private $image;
+    private $ingredients;
+    private $instructions;
 
+    /** Construct a new RecipeSite instance containing its information and content
+     */
     public function __construct($name) {
-
-        # Load XML and mysql connection
-        $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/res/xml/recipes.xml');
-        //print_r($xml);
-        $pdo = new pdo("mysql:host=localhost;dbname=tasty_recipes;charset=utf8mb4", "tasty_user", "tasty");
-
-        # Find current recipe ID. This ID MUST be the same position as the recipes appear in the xml recipes.xml
-        $query = 'SELECT id FROM recipes WHERE name="'. $name .'"';
-        $res = $pdo->query($query);
-        $recipeID = $res->fetchColumn() - 1;
-
-        # Pick out the XML tags we want and put them into variables ready to use
-        $this->title = $xml->recipe[$recipeID]->title;
-        $this->image = $xml->recipe[$recipeID]->imagepath;
-        $this->ingredients = $xml->recipe[$recipeID]->ingredient->li;
-        $this->instructions = $xml->recipe[$recipeID]->recipetext->li;
+        $db = new DatabaseRequest();
+        $recipeID = $db->findRecipeID($name);
+        $this->parseXML($recipeID);
     }
 
+    /** Get the recipe title
+     */
     public function getTitle() {
         return $this->title;
     }
-
+    /** Get the recipes list of ingredients
+     *  Returns array of strings
+     */
     public function getIngredients() {
-
+        return $this->ingredients;
     }
-
+    /** Get the recipes list of instructions
+     *  Returns array of strings
+     */
     public function getInstructions() {
-
+        return $this->instructions;
     }
-
+    /** Get path to recipe image
+     */
     public function getImage() {
-
+        return $this->image;
     }
 
     public function postComment($text) {
@@ -49,9 +46,20 @@ class RecipeSite {
 
     }
 
-    private function parseXML() {
+    private function parseXML($recipeID) {
 
+        # This ID MUST be in in the database in the same position as the recipes appear in the xml recipes.xml.
+        # id 1 in the database is therefor position 0 in the simpleXML array
+        $recipeID = $recipeID-1;
+
+        # Use SimpleXML library to load XML
+        $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/res/xml/recipes.xml');
+
+        # Pick out the XML tags we want and put them into variables ready to use
+        $this->title = $xml->recipe[$recipeID]->title;
+        $this->image = $xml->recipe[$recipeID]->imagepath;
+        $this->ingredients = $xml->recipe[$recipeID]->ingredient->li;
+        $this->instructions = $xml->recipe[$recipeID]->recipetext->li;
     }
 }
-
 ?>

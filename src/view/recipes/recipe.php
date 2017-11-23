@@ -1,30 +1,22 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/src/controller/Controller.php';
 
 function RecipeSite($name) {
 
-    # Load XML and mysql connection
-    $xml = simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/res/xml/recipes.xml');
-    //print_r($xml);
-    $pdo = new pdo("mysql:host=localhost;dbname=tasty_recipes;charset=utf8mb4", "tasty_user", "tasty");
+    $cntr = Controller::getController();
+    $cntr->createRecipeSite($name);
+    $title = $cntr->getRecipeTitle();
+    $image = $cntr->getRecipeImage();
+    $ingredients = $cntr->getRecipeIngredients();
+    $instructions = $cntr->getRecipeInstructions();
 
-    # Find current recipe ID. This ID MUST be the same position as the recipes appear in the xml recipes.xml
-    $query = 'SELECT id FROM recipes WHERE name="'. $name .'"';
-    $res = $pdo->query($query);
-    $recipeID = $res->fetchColumn() - 1;
-
-    # Pick out the XML tags we want and put them into variables ready to use
-    $title = $xml->recipe[$recipeID]->title;
-    $image = $xml->recipe[$recipeID]->imagepath;
-    $ingredients = $xml->recipe[$recipeID]->ingredient->li;
-    $instructions = $xml->recipe[$recipeID]->recipetext->li;
-
-    # To enable redirecting back to page when f.e a comment is posted
-    $_SESSION['previous_page'] = '/recipes/'.strtolower($name).'.php';
+    # To enable redirecting back to this page when f.e a comment is posted
+    $_SESSION['previous_page'] = '/src/view/recipes/'.strtolower($name).'.php';
     echo 
         "<div class='recipe'>
                 <div class='recipe-header'>
                 <h3>$title</h3>'
-                <img alt='meatballs' src='$image'>
+                <img alt='$name' src='$image'>
                 </div>
 
                 <ul class='ingredient-list'>

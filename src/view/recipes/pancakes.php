@@ -12,7 +12,7 @@
             <?php 
             require 'recipe.php';
             RecipeSite("Pancakes"); 
-            include '../parts/comments.php' ?>
+?>
         </div>
 
         <footer>

@@ -1,8 +1,10 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/model/UserAccountHandler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/src/model/RecipeSite.php';
 
 class Controller {
     private $uaHandler; //user account handler
+    private $currentRecipeSite;
 
     /** Constructor
      */
@@ -53,8 +55,21 @@ class Controller {
         return $this->uaHandler->registerNewUser($username, $password);
     }
 
-    public function recipeSiteContent($recipeName) {
+    public function createRecipeSite($recipeName) {
+        $this->currentRecipeSite = new RecipeSite($recipeName);
+    }
 
+    public function getRecipeTitle() {
+        return $this->currentRecipeSite->getTitle();
+    }
+    public function getRecipeImage() {
+        return $this->currentRecipeSite->getImage();
+    }
+    public function getRecipeIngredients() {
+        return $this->currentRecipeSite->getIngredients();
+    }
+    public function getRecipeInstructions() {
+        return $this->currentRecipeSite->getInstructions();
     }
     public function recipeSiteComments($recipeName) {
 

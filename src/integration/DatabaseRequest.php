@@ -28,7 +28,7 @@ class DatabaseRequest {
     }
 
     /** Try to add a new user to user_accounts table
-     *  Returns true if successful, false if unsuccessful
+     *  Returns true if successful, false if user name already exists
      */
     public function addNewUser($username, $password) {
 
@@ -44,6 +44,14 @@ class DatabaseRequest {
             return true;
         }
     }
-}
 
+    /** Find a recipes ID.      
+     *  Returns the ID as an integer
+     */
+    public function findRecipeID($recipeName) {
+        $query = 'SELECT id FROM recipes WHERE name="'. $recipeName .'"';
+        $res = $this->conn->query($query);
+        return $res->fetchColumn();
+    }
+}
 ?>
