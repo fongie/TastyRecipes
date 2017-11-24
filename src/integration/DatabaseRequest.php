@@ -20,8 +20,7 @@ class DatabaseRequest {
     public function findUserAccountMatch($username, $password) {
 
         # returns above 0 if found a matching username/pass combination
-        $query = 'SELECT COUNT(*) FROM user_accounts WHERE username=":uname" AND password=":pwd"';
-        $result = $this->conn->prepare($query);
+        $result = $this->conn->prepare('SELECT COUNT(*) FROM user_accounts WHERE username=:uname AND password=:pwd');
         $params = array(
             'uname' => $username, 
             'pwd' => $password
@@ -40,10 +39,8 @@ class DatabaseRequest {
      */
     public function addNewUser($username, $password) {
 
-        $query = "SELECT COUNT(*) FROM user_accounts WHERE username=:uname";
-        $result = $this->conn->prepare($query);
-        $params = array('uname' => $username);
-        $result->execute($params);
+        $query = "SELECT COUNT(*) FROM user_accounts WHERE username=:user";
+        $result = $this->conn->query($query);
         if ($result->fetchColumn() > 0) {
             return false;
 
