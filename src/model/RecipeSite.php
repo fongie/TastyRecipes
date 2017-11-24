@@ -2,6 +2,8 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/integration/DatabaseRequest.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/model/CommentSection.php';
 
+/** Represents a recipe site, constructed using recipe name (a recipe that is in the XML and database)
+ */
 class RecipeSite {
     private $title;
     private $image;

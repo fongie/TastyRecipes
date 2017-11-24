@@ -7,4 +7,4 @@ I already had a functioning MVC model without using namespaces and autoloading s
 
 I implemented file security (see images)
 
-
+Should use HTTPS whenever password is sent, whenever requests are being made by authenticated user (postcomment,deletecomment, login, register, etc)

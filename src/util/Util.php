@@ -1,5 +1,7 @@
 <?php
 
+/** Provides static utility functions for the View
+ */
 class Util {
 
     /** Redirect to previous page if set, or to index page, if prev page is not set

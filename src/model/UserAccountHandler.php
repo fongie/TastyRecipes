@@ -1,6 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/integration/DatabaseRequest.php';
 
+/** Handles users logging in or registering and provides access to the username and loggedin status
+ */
 class UserAccountHandler {
 
     private $username;
@@ -11,12 +13,9 @@ class UserAccountHandler {
     public function loginUser($username, $password) {
 
         $db = new DatabaseRequest();
-        $foundMatch = $db->findUserAccountMatch($username, $password);
+        $hash = $db->getHashedPassword($username);
 
-        #login if found matching user/pass
-        if ($foundMatch) {
-
-            # remember current username
+        if (password_verify($password, $hash)) {
             $this->username = $username;
             $this->loggedIn = true;
         }
@@ -32,8 +31,11 @@ class UserAccountHandler {
      *  Returns true on success, false on failure
      */
     public function registerNewUser($username, $password) {
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
         $db = new DatabaseRequest();
-        $success = $db->addNewUser($username, $password);
+        $success = $db->addNewUser($username, $hashedPassword);
 
         # If succeeded, also log in
         if ($success) {

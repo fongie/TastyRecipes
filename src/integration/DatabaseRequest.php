@@ -1,11 +1,10 @@
 <?php
 
+/** Represents a new database request. Handles all calls to database relevant for the website
+ */
 class DatabaseRequest {
     private $conn;
     
-    private function validateInput($inp) {
-
-    }
     /** Constructor makes connection to database using PDO
      */
     public function __construct() {
@@ -13,27 +12,14 @@ class DatabaseRequest {
         $this->conn = new pdo("mysql:host=localhost;dbname=tasty_recipes;charset=utf8mb4", "tasty_user", "tasty");
     }
 
-    /**
-     * Find out wheither there is a matching user/pass combination in database
-     * Returns true if found false if no
+    /** Get hashed password for a certain username
      */
-    public function findUserAccountMatch($username, $password) {
-
-        # returns above 0 if found a matching username/pass combination
-        $result = $this->conn->prepare('SELECT COUNT(*) FROM user_accounts WHERE username=:uname AND password=:pwd');
-        $params = array(
-            'uname' => $username, 
-            'pwd' => $password
-        );
+    public function getHashedPassword($username) {
+        $result = $this->conn->prepare('SELECT password FROM user_accounts WHERE username=:uname');
+        $params = array('uname' => $username);
         $result->execute($params);
-
-        if ($result->fetchColumn() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $result->fetch()[0];
     }
-
     /** Try to add a new user to user_accounts table
      *  Returns true if successful, false if user name already exists
      */
@@ -68,7 +54,7 @@ class DatabaseRequest {
         return $res->fetchColumn();
     }
 
-    /** Query to get username and comment rows for this specific recipe
+    /** Get username and comment rows for this specific recipe
      *  Returns the response as an Array of Arrays, each child array containing keys "username", "comment", and "comment_id"
      */
     public function fetchComments($recipeName) {

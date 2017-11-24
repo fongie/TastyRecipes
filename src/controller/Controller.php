@@ -2,6 +2,9 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/model/UserAccountHandler.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/model/RecipeSite.php';
 
+/**
+ * Handles all calls between the view and the model
+ */
 class Controller {
     private $uaHandler; //user account handler
     private $currentRecipeSite; //instance of current recipesite
