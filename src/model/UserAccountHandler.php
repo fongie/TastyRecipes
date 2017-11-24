@@ -6,6 +6,8 @@ class UserAccountHandler {
     private $username;
     private $loggedIn = false;
 
+    /** Attempt to log in a user to the website
+     */
     public function loginUser($username, $password) {
 
         $db = new DatabaseRequest();
@@ -20,12 +22,14 @@ class UserAccountHandler {
         }
     }
 
+    /** Return wheither a user is logged in or not
+     */
     public function loggedIn() {
         return $this->loggedIn;
     }
 
     /** Register new user account in the database
-     * Returns true on success, false on failure
+     *  Returns true on success, false on failure
      */
     public function registerNewUser($username, $password) {
         $db = new DatabaseRequest();

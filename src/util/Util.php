@@ -2,7 +2,8 @@
 
 class Util {
 
-    #redirect to previous page if set, or to index page, if prev page is not set
+    /** Redirect to previous page if set, or to index page, if prev page is not set
+     */
     public static function redirectToPreviousPage() {
 
         if (!empty($_SESSION['previous_page'])) {
