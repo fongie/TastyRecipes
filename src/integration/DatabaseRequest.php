@@ -39,15 +39,21 @@ class DatabaseRequest {
      */
     public function addNewUser($username, $password) {
 
-        $query = "SELECT COUNT(*) FROM user_accounts WHERE username=:user";
-        $result = $this->conn->query($query);
+        $result = $this->conn->prepare("SELECT COUNT(*) FROM user_accounts WHERE username=:uname");
+        $params = array('uname' => $username);
+        $result->execute($params);
+
         if ($result->fetchColumn() > 0) {
             return false;
 
             # If not, add user to table
         } else {
-            $insertAccount = "INSERT INTO user_accounts(username, password) VALUES ('$username', '$password');";
-            $this->conn->query($insertAccount);
+            $insertUser = $this->conn->prepare("INSERT INTO user_accounts(username, password) VALUES (:uname, :pwd)");
+            $params = array(
+                'uname' => $username, 
+                'pwd' => $password
+            );
+            $insertUser->execute($params);
             return true;
         }
     }
@@ -56,8 +62,9 @@ class DatabaseRequest {
      *  Returns the ID as an integer
      */
     public function findRecipeID($recipeName) {
-        $query = 'SELECT id FROM recipes WHERE name="'. $recipeName .'"';
-        $res = $this->conn->query($query);
+        $res = $this->conn->prepare("SELECT id FROM recipes WHERE name=:recipeName");
+        $params = array('recipeName' => $recipeName);
+        $res->execute($params);
         return $res->fetchColumn();
     }
 
@@ -65,8 +72,9 @@ class DatabaseRequest {
      *  Returns the response as an Array of Arrays, each child array containing keys "username", "comment", and "comment_id"
      */
     public function fetchComments($recipeName) {
-        $query = 'SELECT comment_id, username, comment FROM comments JOIN user_accounts ON comments.user_id = user_accounts.user_id JOIN recipes ON comments.recipe_id = recipes.id WHERE recipes.name="'.$recipeName .'"';
-        $res = $this->conn->query($query);
+        $res = $this->conn->prepare("SELECT comment_id, username, comment FROM comments JOIN user_accounts ON comments.user_id = user_accounts.user_id JOIN recipes ON comments.recipe_id = recipes.id WHERE recipes.name=:recipeName");
+        $params = array('recipeName' => $recipeName);
+        $res->execute($params);
 
         $comments = array();
         $row = $res->fetch(PDO::FETCH_ASSOC);
@@ -82,20 +90,28 @@ class DatabaseRequest {
      */
     public function insertComment($recipeID, $username, $comment) {
 
-        $findUserID = 'SELECT user_id FROM user_accounts WHERE username="'.$username.'";';
-        $res = $this->conn->query($findUserID);
+        $res = $this->conn->prepare("SELECT user_id FROM user_accounts WHERE username=:uname");
+        $params = array('uname' => $username);
+        $res->execute($params);
+
         $userID = $res->fetch()[0]; #because username is unique this always fetches exactly 1 value
 
-        $insertComment = 'INSERT INTO comments(recipe_id, user_id, comment) VALUES ('.$recipeID.', '.$userID.', "'.$comment.'");';
-        $res = $this->conn->query($insertComment);
+        $res = $this->conn->prepare("INSERT INTO comments(recipe_id, user_id, comment) VALUES (:recipeID, :userID, :text)");
+        $params = array(
+            'recipeID' => $recipeID,
+            'userID' => $userID,
+            'text' => $comment
+        );
+        $res->execute($params);
     }
 
     /** Delete a comment from the database using its commentID
      */
     public function removeComment($commentID) {
 
-        $deleteComment = "DELETE FROM comments WHERE comment_id=$commentID;";
-        $this->conn->query($deleteComment);
+        $res = $this->conn->prepare("DELETE FROM comments WHERE comment_id=:commentID");
+        $params = array('commentID' => $commentID);
+        $res->execute($params);
     }
 
     /** Find username who wrote a certain comment (by ID)
@@ -103,8 +119,9 @@ class DatabaseRequest {
      */
     public function findAuthorOfComment($commentID) {
 
-        $qry = "SELECT username FROM user_accounts JOIN comments ON user_accounts.user_id = comments.user_id WHERE comment_id = $commentID";
-        $res = $this->conn->query($qry);
+        $res = $this->conn->prepare("SELECT username FROM user_accounts JOIN comments ON user_accounts.user_id = comments.user_id WHERE comment_id = :commentID");
+        $params = array('commentID' => $commentID);
+        $res->execute($params);
         return $res->fetch()[0];
     }
 }
