@@ -3,6 +3,9 @@
 class DatabaseRequest {
     private $conn;
     
+    private function validateInput($inp) {
+
+    }
     /** Constructor makes connection to database using PDO
      */
     public function __construct() {
@@ -17,8 +20,13 @@ class DatabaseRequest {
     public function findUserAccountMatch($username, $password) {
 
         # returns above 0 if found a matching username/pass combination
-        $query = "SELECT COUNT(*) FROM user_accounts WHERE username='$username' AND password='$password'";
-        $result = $this->conn->query($query);
+        $query = 'SELECT COUNT(*) FROM user_accounts WHERE username = ":uname" AND password= ":pwd"';
+        $result = $this->conn->prepare('SELECT COUNT(*) FROM user_accounts WHERE username=:uname AND password=:pwd');
+        $params = array(
+            'uname' => $username, 
+            'pwd' => $password
+        );
+        $result->execute($params);
 
         if ($result->fetchColumn() > 0) {
             return true;
@@ -37,7 +45,7 @@ class DatabaseRequest {
         if ($result->fetchColumn() > 0) {
             return false;
 
-        # If not, add user to table
+            # If not, add user to table
         } else {
             $insertAccount = "INSERT INTO user_accounts(username, password) VALUES ('$username', '$password');";
             $this->conn->query($insertAccount);
@@ -67,7 +75,7 @@ class DatabaseRequest {
             array_push($comments, $row);
             $row = $res->fetch(PDO::FETCH_ASSOC);
         }
-        
+
         return $comments;
     }
 
