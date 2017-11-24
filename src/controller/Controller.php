@@ -82,6 +82,8 @@ class Controller {
         $this->currentRecipeSite->postComment($username, $commentText);
     }
     public function deleteComment($commentID) {
+        $currentLoggedinUser = $this->uaHandler->getUsername();
+        $this->currentRecipeSite->deleteComment($commentID, $currentLoggedinUser);
     }
 }
 ?>

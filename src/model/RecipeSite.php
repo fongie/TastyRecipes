@@ -53,9 +53,8 @@ class RecipeSite {
     public function postComment($username, $text) {
         $this->commentSection->postComment($this->ID, $username, $text);
     }
-
-    public function deleteComment($commentID) {
-
+    public function deleteComment($commentID, $currentLoggedinUser) {
+        $this->commentSection->deleteComment($commentID, $currentLoggedinUser);
     }
     private function parseXML($recipeID) {
 

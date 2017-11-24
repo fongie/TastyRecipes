@@ -70,6 +70,9 @@ class DatabaseRequest {
         
         return $comments;
     }
+
+    /** Insert a comment into the database, for a certain recipe and username
+     */
     public function insertComment($recipeID, $username, $comment) {
 
         $findUserID = 'SELECT user_id FROM user_accounts WHERE username="'.$username.'";';
@@ -78,6 +81,24 @@ class DatabaseRequest {
 
         $insertComment = 'INSERT INTO comments(recipe_id, user_id, comment) VALUES ('.$recipeID.', '.$userID.', "'.$comment.'");';
         $res = $this->conn->query($insertComment);
+    }
+
+    /** Delete a comment from the database using its commentID
+     */
+    public function removeComment($commentID) {
+
+        $deleteComment = "DELETE FROM comments WHERE comment_id=$commentID;";
+        $this->conn->query($deleteComment);
+    }
+
+    /** Find username who wrote a certain comment (by ID)
+     *  Returns the username as a string
+     */
+    public function findAuthorOfComment($commentID) {
+
+        $qry = "SELECT username FROM user_accounts JOIN comments ON user_accounts.user_id = comments.user_id WHERE comment_id = $commentID";
+        $res = $this->conn->query($qry);
+        return $res->fetch()[0];
     }
 }
 ?>

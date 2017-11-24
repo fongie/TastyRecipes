@@ -76,7 +76,7 @@ if ($cntr->getLoggedIn()) {
         <button class "w3cbutton" type="submit">Send</button>
         </div>';
 } else {
-    echo '<a href="/login_page.php">Log in</a> to post a comment!';
+    echo '<a href="/src/view/login_page.php">Log in</a> to post a comment!';
 }
 echo "</div>";
 ?>
