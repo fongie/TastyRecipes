@@ -20,7 +20,7 @@ class DatabaseRequest {
     public function findUserAccountMatch($username, $password) {
 
         # returns above 0 if found a matching username/pass combination
-        $query = 'SELECT COUNT(*) FROM user_accounts WHERE username = ":uname" AND password= ":pwd"';
+        $query = 'SELECT COUNT(*) FROM user_accounts WHERE username=":uname" AND password=":pwd"';
         $result = $this->conn->prepare($query);
         $params = array(
             'uname' => $username, 
