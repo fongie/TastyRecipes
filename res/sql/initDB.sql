@@ -31,17 +31,4 @@ GRANT ALL PRIVILEGES ON tasty_recipes . * TO 'tasty_user';
 FLUSH PRIVILEGES;
 
 -- Ignore makes mysql treat error as warning (if duplicate for example)
-INSERT IGNORE INTO user_accounts(username, password) 
-VALUES 
-    ('sampleUser', 'pass'),
-    ('Max', 'pass');
-
 INSERT IGNORE INTO recipes(name) VALUES ('meatballs'), ('pancakes');
-
-INSERT IGNORE INTO comments(user_id, recipe_id, comment)
-VALUES
-    (1, 1, 'Nice looking meatballs'),
-    (1, 2, 'Yummy pancakes'),
-    (2, 1, 'Best meatballs'),
-    (2, 2, 'good recipe for pancakes')
-    ;
