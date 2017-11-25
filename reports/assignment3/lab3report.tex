@@ -69,12 +69,12 @@ At last I chose to implement password encryption. Since I first restructured the
 
 \section{Optional Task 1}
 
-I actually chose to use a database already in the last assignment. To set up the database quickly on different servers when I change environment, I wrote a sql file that does this if you source it from the mySQL command line. You can find it at \href{https://github.com/fongie/TastyRecipes/blob/assignment3/res/sql/initDB.sql}. I then use SQL queries and the PDO library to fetch and insert data into the database.
+I actually chose to use a database already in the last assignment. To set up the database quickly on different servers when I change environment, I wrote a sql file that does this if you source it from the mySQL command line. You can find it at \href{https://github.com/fongie/TastyRecipes/blob/assignment3/res/sql/initDB.sql}{this link}. I then use SQL queries and the PDO library to fetch and insert data into the database.
 
 \chapter{Result}
 \label{sec:result}
 
-The git repository can be found at \href{https://github.com/fongie/TastyRecipes/tree/assignment3}
+The git repository can be found \href{https://github.com/fongie/TastyRecipes/tree/assignment3}{here}.
 
 \section{Task 1}
 
@@ -109,13 +109,13 @@ The file security of the system is strong on the webserver, as seen in Figure \r
   \end{center}
 \end{figure}
 
-Database security is maintained on the mySQL server using a unique user for the webapp, and by using parameterized queries in all requests to the database, as seen in \href{https://github.com/fongie/TastyRecipes/blob/assignment3/src/integration/DatabaseRequest.php}.
+Database security is maintained on the mySQL server using a unique user for the webapp, and by using parameterized queries in all requests to the database, as seen in \href{https://github.com/fongie/TastyRecipes/blob/assignment3/src/integration/DatabaseRequest.php}{this class file}.
 
-Usage of password encryption can be seen here \href{https://github.com/fongie/TastyRecipes/blob/86f4548c3b4659b762134c756cc5ac4c0cbf72a2/src/model/UserAccountHandler.php#L35} and here \href{https://github.com/fongie/TastyRecipes/blob/86f4548c3b4659b762134c756cc5ac4c0cbf72a2/src/model/UserAccountHandler.php#L18}.
+Usage of password encryption can be seen \href{https://github.com/fongie/TastyRecipes/blob/86f4548c3b4659b762134c756cc5ac4c0cbf72a2/src/model/UserAccountHandler.php#L35}{here} and \href{https://github.com/fongie/TastyRecipes/blob/86f4548c3b4659b762134c756cc5ac4c0cbf72a2/src/model/UserAccountHandler.php#L18}{here}.
 
 \section{Optional Task 2}
 
-Database requests are made using the PDO library and SQL queries. All requests are made using a new instance of the \code{DatabaseRequest} class. The easiest way to see how data is inserted and extracted is to see the code for that class, here: \href{https://github.com/fongie/TastyRecipes/blob/assignment3/src/integration/DatabaseRequest.php}.
+Database requests are made using the PDO library and SQL queries. All requests are made using a new instance of the \code{DatabaseRequest} class. The easiest way to see how data is inserted and extracted is to see the code for that class, \href{https://github.com/fongie/TastyRecipes/blob/assignment3/src/integration/DatabaseRequest.php}{here}.
 
 \chapter{Discussion}
 
