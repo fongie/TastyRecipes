@@ -119,15 +119,14 @@ Database requests are made using the PDO library and SQL queries. All requests a
 
 \chapter{Discussion}
 
-Implementing the MVC architecture from completely unstructured code was a long process and not very easy at first, the result is however a clear impementation of the MVC architecture. There are some requests that are passed down quite a long way, for example through the \code{Controller} all the way to a \code{CommentSection,} but this is to reduce coupling on the \code{Controller.} All layers are well encapsulated, since all calls are made from the top and downwards. The \code{Util} class could have been left out but redirecting pages was so frequent in the view that I wanted to make a class for it. 
+Implementing the MVC architecture from completely unstructured code was a long process and not very easy at first, the result is however a clear impementation of the MVC architecture. It helped tremendously to plan ahead using a class diagram. There are some requests that are passed down quite a long way, for example through the \code{Controller}, through a \code{RecipeSite} all the way to a \code{CommentSection}, but this is to reduce coupling on the \code{Controller} which now only has dependencies on two classes. All layers are well encapsulated, since all calls are made from the top and downwards. The \code{Util} class could have been left out but redirecting pages was so frequent in the view that I wanted to make a class for it. Since there were not many classes and files in this webapp I decided not to use a class autoloader. It makes it easier to keep track of what is actually imported, perhaps keeping a likeness to Java. Each import is required once instead.
 
-Since there were not many classes and files in this webapp I decided not to use a class autoloader. It makes it easier to keep track of what is actually imported, perhaps keeping a likeness to Java.
-
+The security implementations were straightforward following the instructions in the lecture notes, there is not much to discuss about that.
 
 \chapter{Comments About the Course}
 
-I spent about 30 hours on this assignment, finding it to be quite a large task despite having fiddled around a little in the web world before. It was interesting to finally find out how server side PHP code works. 
-
-I found that working with the code from the first assignment as a starting point lead to very unstructured code at the end of the second, with mixed HTML and PHP code everywhere, despite trying to follow the lecture notes on architecture. I look forward to clean this mess up in the next assignment - since I believe this assignment did not have requirements on code structure.
+I spent more than 40 hours on this assignment.
+As predicted after the previous assignment, structuring the code was a lot of work, despite having done the Object Oriented Design course last semester.
+Implementing security was easy, especially using a linux web server.
 
 \end{document}
