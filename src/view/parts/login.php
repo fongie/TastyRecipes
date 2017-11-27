@@ -1,4 +1,8 @@
 <?php
+/*
+ * BEING REPLACED BY JAVASCRIPT IN src/view/viewmodel.
+ * next step to make the ajax calls for the variable stuff
+ */
 require_once $_SERVER['DOCUMENT_ROOT'].'/src/controller/Controller.php';
 
 function loginHeader() {

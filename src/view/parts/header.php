@@ -1,8 +1,10 @@
 <h1>TASTY RECIPES</h1>
-<?php 
-    require_once $_SERVER['DOCUMENT_ROOT'].'/src/view/parts/login.php';
-    loginHeader();
-?>
+
+<div id="login-div">
+        <p class="header-topright" data-bind="text: loggedinText, visible: notLoggedIn"></p>
+        <a class="header-topright" data-bind="visible: isLoggedIn" href="/src/view/registration_page.php">Register</a>
+        <a class="header-topright" data-bind="visible: isLoggedIn" href="/src/view/login_page.php">Login</a>
+</div>
             <nav>
                 <ul>
                     <li>
