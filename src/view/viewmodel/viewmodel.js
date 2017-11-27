@@ -11,10 +11,16 @@ $(document).ready(function () {
             this
         );
 
+        $.getJSON(
+            "/src/view/requests/getLogin.php", 
+            (resp) => { 
+                this.userName(resp.username); 
+                this.notLoggedIn(resp.loggedIn);
+                this.isLoggedIn(!resp.loggedIn);
+            }
+        );
     }
-
     
 ko.applyBindings(new loginHeader(), document.getElementById('login-div'));
-
 
 });

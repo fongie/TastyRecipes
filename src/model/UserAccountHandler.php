@@ -3,10 +3,20 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/src/integration/DatabaseRequest.php';
 
 /** Handles users logging in or registering and provides access to the username and loggedin status
  */
-class UserAccountHandler {
+class UserAccountHandler implements JsonSerializable {
 
     private $username;
     private $loggedIn = false;
+
+    public function jsonSerialize() {
+
+        $json_obj = new \stdClass;
+        $json_obj->username = $this->username;
+        $json_obj->loggedIn = $this->loggedIn;
+
+        return $json_obj;
+
+    }
 
     /** Attempt to log in a user to the website
      */

@@ -9,6 +9,10 @@ class Controller {
     private $uaHandler; //user account handler
     private $currentRecipeSite; //instance of current recipesite
 
+    public function getLoginInfo() {
+        return $this->uaHandler;
+    }
+
     /** Constructor
      */
     public function __construct() {
