@@ -2,7 +2,7 @@
 
 <div id="login-div">
         <p class="header-topright" data-bind="text: loggedinText, visible: notLoggedIn"></p>
-        <a class="header-topright" data-bind="visible: notLoggedIn, attr: { href: logoutLink }">Logout</a>
+        <button class="header-topright" data-bind="visible: notLoggedIn, click: logOut">Logout</button>
         <a class="header-topright" data-bind="visible: isLoggedIn" href="/src/view/registration_page.php">Register</a>
         <a class="header-topright" data-bind="visible: isLoggedIn" href="/src/view/login_page.php">Login</a>
 </div>

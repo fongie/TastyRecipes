@@ -14,6 +14,12 @@ $(document).ready(() => {
             this.text = ko.observable("Logged in as");
             this.logoutLink = "/src/view/requests/handle_logout.php";
 
+            this.logOut = () => {
+                $.post("/src/view/requests/handle_logout.php");
+                this.isLoggedIn(true);
+                this.notLoggedIn(false);
+            };
+
             this.loggedinText = ko.computed(
                 () => (this.text() + " " + this.userName()),
                 this
@@ -39,8 +45,3 @@ $(document).ready(() => {
     ko.applyBindings(new loginHeader(), document.getElementById('login-div'));
 
 });
-
-function logOut() {
-    console.log("logging out");
-
-}
