@@ -46,6 +46,11 @@ class Controller {
             return false;
         }
     }
+    /** Logout user
+     */
+    public function logOut() {
+        $this->uaHandler->logOut();
+    }
     /** Get wheither a user is logged in or not
      */
     public function getLoggedIn() {

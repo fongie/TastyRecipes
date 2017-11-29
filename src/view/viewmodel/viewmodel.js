@@ -1,5 +1,6 @@
 $(document).ready(() => {
 
+
     //Controls the login header part
     class loginHeader {
         constructor() {
@@ -11,6 +12,7 @@ $(document).ready(() => {
             this.isLoggedIn = ko.observable(!(this.loggedIn));
             this.userName = ko.observable();
             this.text = ko.observable("Logged in as");
+            this.logoutLink = "/src/view/requests/handle_logout.php";
 
             this.loggedinText = ko.computed(
                 () => (this.text() + " " + this.userName()),
@@ -37,3 +39,8 @@ $(document).ready(() => {
     ko.applyBindings(new loginHeader(), document.getElementById('login-div'));
 
 });
+
+function logOut() {
+    console.log("logging out");
+
+}

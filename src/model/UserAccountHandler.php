@@ -31,6 +31,11 @@ class UserAccountHandler implements JsonSerializable {
         }
     }
 
+    public function logOut() {
+        $this->username = null;
+        $this->loggedIn = false;
+    }
+
     /** Return wheither a user is logged in or not
      */
     public function loggedIn() {
