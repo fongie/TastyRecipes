@@ -8,18 +8,18 @@
             <?php include 'parts/header.php' ?>
         </header>
 
-        <div class="login-page">
+        <div id="login-page">
         <h3>Login Existing User</h3>
-         <form action="requests/handle_login.php" method="post">
+         <form data-bind="submit: loginUser">
 
           <div class="login-container">
             <label><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="text" data-bind="textInput: username" placeholder="Enter Username" name="uname" required>
 
             <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" data-bind="textInput: password" placeholder="Enter Password" name="psw" required>
 
-            <button class "w3cbutton" type="submit">Login</button>
+            <button class="w3cbutton" type="submit">Login</button>
           </div>
 
         </form> 

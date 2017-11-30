@@ -148,7 +148,7 @@
 
 /* Login page (from W3C schools "how to create a login form") */
 
-    .login-page {
+    #login-page {
         margin: auto;
         padding-top: 20px;
         padding-bottom: 20px;

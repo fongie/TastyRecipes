@@ -9,10 +9,5 @@ $username = $_POST["uname"];
 $cntr = Controller::getController();
 $success = $cntr->login($username, $_POST["psw"]);
 
-if ($success) {
-    echo "Logging in as $username...";
-    Util::redirectToPreviousPage();
-} else {
-    echo "Login failed. Press back button on browser to go back and try again";
-}
+echo json_encode(array(result => $success));
 ?>
