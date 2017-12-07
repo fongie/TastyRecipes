@@ -6,7 +6,7 @@ class loginPage {
 
         this.username = ko.observable();
         this.password = ko.observable();
-
+        this.showLoginFail = ko.observable();
     }
 
     loginUser() {
@@ -23,7 +23,9 @@ class loginPage {
                 if (resp.result) {
                     //TODO WORK HERE
                     console.log("SUCCESS");
+                    window.location = '/index.php';
                 } else {
+                    this.showLoginFail(true);
                     console.log("FAIL");
                 }
             },

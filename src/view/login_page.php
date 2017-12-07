@@ -24,6 +24,8 @@
 
         </form> 
 
+        <p data-bind="visible: showLoginFail">Login failed! Wrong username or password entered.</p>
+
         </div>
         <footer>
             <?php include 'parts/footer.php' ?>
