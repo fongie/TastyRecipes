@@ -8,6 +8,8 @@ class UserAccountHandler implements JsonSerializable {
     private $username;
     private $loggedIn = false;
 
+    /** To send to viewmodel
+     */
     public function jsonSerialize() {
 
         $json_obj = new \stdClass;

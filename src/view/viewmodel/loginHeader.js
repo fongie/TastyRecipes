@@ -29,7 +29,7 @@ class loginHeader {
 
     getInformationFromServer() {
         $.getJSON(
-            "/src/view/requests/getLogin.php", 
+            "/src/view/requests/get_login.php", 
             (resp) => { 
                 this.userName(resp.username); 
                 this.notLoggedIn(resp.loggedIn);

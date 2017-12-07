@@ -8,4 +8,6 @@ $(document).ready(() => {
         ko.applyBindings(new loginPage(), document.getElementById('login-page'));
     }
 
+    ko.applyBindings(new commentSection(), document.getElementById('comments-list'));
+
 });

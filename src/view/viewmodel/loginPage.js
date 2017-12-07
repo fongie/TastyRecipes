@@ -1,4 +1,3 @@
-
 class loginPage {
 
     constructor() {
@@ -21,12 +20,9 @@ class loginPage {
             data,
             (resp) => {
                 if (resp.result) {
-                    //TODO WORK HERE
-                    console.log("SUCCESS");
                     window.location = '/index.php';
                 } else {
                     this.showLoginFail(true);
-                    console.log("FAIL");
                 }
             },
             "json"

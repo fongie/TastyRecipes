@@ -22,3 +22,6 @@
 <script type="text/javascript"
         src="/src/view/viewmodel/loginPage.js">
 </script>
+<script type="text/javascript"
+        src="/src/view/viewmodel/commentSection.js">
+</script>
