@@ -10,6 +10,7 @@
 
         <div class="recipe-site">
             <?php require_once $_SERVER['DOCUMENT_ROOT'].'/src/view/parts/recipe_body.php' ?>
+            <?php require_once $_SERVER['DOCUMENT_ROOT'].'/src/view/parts/comments.php' ?>
         </div>
 
         <footer>

@@ -36,6 +36,4 @@ foreach($instructions as $instruction) {
                 '</ul>
             </div>';
 
-include 'comments.php';
-echo "</div>";
 ?>
