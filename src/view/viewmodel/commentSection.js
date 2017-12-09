@@ -1,25 +1,13 @@
+$(document).ready(() => {
+    class commentSection {
+        constructor() {
 
-class commentSection {
+            this.commentUser= ko.observable("User");
+            this.commentText = ko.observable ("COMMENTTEXT");
 
-    constructor() {
-        this.fetchComments = this.fetchComments.bind(this);
-
-        this.comments = ko.observableArray([
-            {
-                username: 'Username',
-                commentText: 'Hello comments'
-            },
-            {
-                username: 'hey',
-                commentText: 'boy'
-            }
-        ]);
-
+        }
     }
 
-    fetchComments() {
-    }
+    ko.applyBindings(new commentSection(), document.getElementById('comments-list'));
 
-
-
-}
+});

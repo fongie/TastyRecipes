@@ -25,3 +25,5 @@
                     </li>
                 </ul>
             </nav>
+<script src="/src/view/viewmodel/loginHeader.js">
+</script>

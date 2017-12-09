@@ -30,5 +30,7 @@
         <footer>
             <?php include 'parts/footer.php' ?>
         </footer>
+<script src="/src/view/viewmodel/loginPage.js">
+</script>
     </body>
 </html>

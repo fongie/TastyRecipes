@@ -8,13 +8,3 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js">
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js">
-</script>
-<script src="/src/view/viewmodel/viewmodel.js">
-</script>
-<script src="/src/view/viewmodel/loginHeader.js">
-</script>
-<script src="/src/view/viewmodel/loginPage.js">
-</script>
-<script src="/src/view/viewmodel/commentSection.js">
-</script>
