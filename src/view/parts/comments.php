@@ -1,6 +1,10 @@
+<?php
+session_start();
+
+echo '
             <div class="usercomments">
                 <h4>Comments:</h4>
-                <ul id="comments-list">
+                <ul id="comments-list" data-bind="foreach: comment">
                     <li>
                         <div class="comment">
                             <div class="username-div">
@@ -15,3 +19,6 @@
         </div>
         <script src="/src/view/viewmodel/commentSection.js">
         </script>
+';
+
+?>

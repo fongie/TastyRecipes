@@ -9,5 +9,5 @@ $username = $_POST["uname"];
 $cntr = Controller::getController();
 $success = $cntr->login($username, $_POST["psw"]);
 
-echo json_encode(array(result => $success));
+echo json_encode(array('result' => $success));
 ?>

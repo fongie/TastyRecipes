@@ -5,6 +5,5 @@ session_start();
 $cntr = Controller::getController();
 $comments = $cntr->getRecipeSiteComments();
 
-echo json_encode($ua);
-
+echo json_encode($comments);
 ?>

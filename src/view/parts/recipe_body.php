@@ -8,8 +8,8 @@ $title = $cntr->getRecipeTitle();
 $image = $cntr->getRecipeImage();
 $ingredients = $cntr->getRecipeIngredients();
 $instructions = $cntr->getRecipeInstructions();
-$comments = $cntr->getRecipeSiteComments();
-$recipeID = $cntr->getRecipeSiteID();
+//$comments = $cntr->getRecipeSiteComments();
+//$recipeID = $cntr->getRecipeSiteID();
 
 # To enable redirecting back to this page when f.e a comment is posted
 $_SESSION['previous_page'] = "/src/view/recipe.php?name=$name";
