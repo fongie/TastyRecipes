@@ -2,8 +2,10 @@
 session_start();
 
 echo '
-            <div class="usercomments">
+            <div class="usercomments" id="commentSection">
                 <h4>Comments:</h4>
+
+                <!-- Comments list ----->
                 <ul id="comments-list" data-bind="foreach: comments">
                     <li>
                         <div class="comment">
@@ -11,7 +13,7 @@ echo '
                                 <p><strong data-bind="text: username"></strong></p>
                             </div>
                             <div class="comment-div">
-                            <p data-bind="text: comment"></p>
+                                <p data-bind="text: comment"></p>
 
 							
                                 <!-- Delete key -->
@@ -21,21 +23,24 @@ echo '
                                         <button class="w3cbutton" type="submit">Delete</button>
                                     </form>
                                 </div>
+                                <!---------------------->
 
                             </div>
                         </div>
                     </li>
                 </ul>
+                <!---------------------->
 				
                     <!-- Post comment form -->
-                    <form class="comment-form" action="/src/view/requests/post_comment.php" method="post">
-                        <div class="comment-form-container">
-                        <input type="text" placeholder="Write your comment here!" name="postcomment" required>
-                        <input type="hidden" value="recipeID" name="recipeID">
-                        <button class "w3cbutton" type="submit">Send</button>
-                        </div>
-                    </form>
+                    <div class="comment-form-container">
+                        <form class="comment-form" data-bind="submit: postComment">
+                            <input type="text" data-bind="textInput: posttext" placeholder="Write your comment here!" name="posttext" required>
+                            <button class="w3cbutton" type="submit">Send</button>
+                        </form>
+                    </div>
 					<p><a href="/src/view/login_page.php">Log in</a> to post a comment!</p>
+                    <!---------------------->
+
             </div>
         <script src="/src/view/viewmodel/commentSection.js">
         </script>

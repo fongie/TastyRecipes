@@ -4,11 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/src/util/Util.php';
 
 session_start();
 
-//echo "Deleting comment.. Page will reload after. If it doesnt, click the browsers Back button";
-
 $cntr = Controller::getController();
 $commentID = $_POST["commentID"];
-echo $cntr->deleteComment($commentID);
-
-//Util::redirectToPreviousPage();
+$cntr->deleteComment($commentID);
+echo 1;
 ?>
