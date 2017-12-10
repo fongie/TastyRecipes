@@ -6,6 +6,7 @@ $(document).ready(() => {
 
             this.comments = ko.observableArray();
             this.posttext = ko.observable();
+            this.showPostForm = ko.observable(false);
 
             //Get all comments as array
             $.getJSON(
@@ -14,6 +15,14 @@ $(document).ready(() => {
                     let arr = resp;
                     arr.map((obj) => (obj.deleteComment = this.deleteComment)); //add to every comment in array the delete function, otherwise knockout doesnt find it
                     this.comments(arr);
+                }
+            );
+
+            //Find out wheither post comment form should show or not
+            $.getJSON(
+                "/src/view/requests/get_login.php",
+                (resp) => {
+                    this.showPostForm(resp.loggedIn);
                 }
             );
         }

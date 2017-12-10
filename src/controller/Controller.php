@@ -94,7 +94,17 @@ class Controller {
     /** Get the current recipe site's list of comments
      */
     public function getRecipeSiteComments() {
-        return $this->currentRecipeSite->getComments();
+        $arr = $this->currentRecipeSite->getComments();
+        $newarr = array();
+        foreach ($arr as $comment) {
+            if ($this->uaHandler->getUsername() == $comment['username']) {
+                $comment["byCurrentUser"] = true;
+            } else {
+                $comment["byCurrentUser"] = false;
+            }
+            array_push($newarr, $comment);
+        }
+        return $newarr;
     }
     /** Get the current recipe site's ID
      */
