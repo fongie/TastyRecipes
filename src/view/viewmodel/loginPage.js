@@ -31,9 +31,5 @@ $(document).ready(() => {
             );
         }
     }
-
-
-    if (!ko.dataFor(document.getElementById('login-page'))) {
-        ko.applyBindings(new loginPage(), document.getElementById('login-page'));
-    }
+    ko.applyBindings(new loginPage(), document.getElementById('login-page'));
 });
