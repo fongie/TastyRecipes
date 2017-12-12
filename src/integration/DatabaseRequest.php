@@ -110,5 +110,11 @@ class DatabaseRequest {
         $res->execute($params);
         return $res->fetch()[0];
     }
+
+    public function getLastCommentId() {
+        $res = $this->conn->prepare("SELECT comment_id FROM comments ORDER BY comment_id DESC LIMIT 1");
+        $res->execute();
+        return $res->fetch()[0];
+    }
 }
 ?>

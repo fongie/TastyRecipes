@@ -27,14 +27,14 @@
 \headheight 27pt
 \pagestyle{fancyplain}
 \lhead{\footnotesize{Applikationer för internet, ID1354}}
-\chead{\footnotesize{Assignment 3 report}}
+\chead{\footnotesize{Assignment 4 report}}
 \rhead{}
 \lfoot{}
 \cfoot{\thepage\ (\pageref{LastPage})}
 \rfoot{}
 
 % Create title page
-\title{Assignment 3}
+\title{Assignment 4}
 \subtitle{Applikationer för internet, ID1354}
 \author{Max Körlinge, korlinge@kth.se}
 \date{\today}
@@ -48,37 +48,31 @@
 
 \chapter{Introduction}
 
-This assignment concerns structuring the web application to follow the MVC pattern, and to implement three security measures from a list. Optional tasks were to use a database to store data, and to improve performance. I chose to use a database, but not improve performance. For the mandatory task 1 I chose to implement the MVC architecture without using a framework.
+This assignment is about using browser javascript, jQuery and Ajax calls. You were required to use AJAX for reading and writing comments (and I initially had a version of the assignment where you had to do login and logout aswell, which I have done). That was the mandatory task. One optional task was to do this using a framework for the viewmodel. I chose to do this optional task, using the Knockout framework, as suggested in the assignment. There was an optional task to use Long Polling, which I did not do.
 
 \chapter{Literature Study}
 
-To complete the tasks I first studied the course lecture notes on MVC for a web application and web security.
+To complete the tasks I first studied the course lecture notes on Javascript and extensively studied the Knockout framework documentation.
 
 \chapter{Method}
 
-\section{Task 1a}
-I started trying to "happy hack" my way through this assignment but quickly realized that I had to have a plan, so I started off by making a class diagram in Astah-community. I started by implementing all actions a user could take as a function in the Controller, and then added operations and other classes as I saw fit. After the MVC diagram was finished I coded each action one by one (for example first logging in a user, then registering a user, then writing a comment, etc), changing the class diagram when necessery. I use view, controller, model, and integration layers. The view layer has all pages, HTTP requests, and parts that are included in the views, such as header and footer. All the other layers are pure PHP classes that are called from the view (through the controller). To make objects persist I made the Controller destruct method serialize the controller in the session cookie.
-
-\section{Task 2}
-
-I chose to implement File Security. Apache2 works as a user who only deals with the webroot (www-data), and when working with the site I use a small bash script that copies the files into the web root, and then sets \code{chmod -R 755} on the directories, which means that only root user has access to changing the files, all other users, such as the apache user, can only read and execute files inside. I also denied HTTP access to all files containing PHP classes through the apache configuration.
-
-I also chose to implement database security. I had already set up my mySQL database so that a special user was created who only had access to the database pertaining to the website. I then changed all the methods in the integration layer class \code{DatabaseRequest}, which handles database requests, to use parameterized requests using \code{prepare()} and \code{execute()}, instead of the \code{query()} method I was using before.
-
-At last I chose to implement password encryption. Since I first restructured the program to use the MVC architecture, I could simply change the \code{loginUser()} and \code{registerNewUser()} methods in the \code{UserAccountHandler} class to use \code{password\_hash} and \code{password\_verify} PHP functions instead of storing the password as plain text.
-
 \section{Optional Task 1}
 
-I actually chose to use a database already in the last assignment. To set up the database quickly on different servers when I change environment, I wrote a sql file that does this if you source it from the mySQL command line. You can find it at \href{https://github.com/fongie/TastyRecipes/blob/assignment3/res/sql/initDB.sql}{this link}. I then use SQL queries and the PDO library to fetch and insert data into the database.
+I implemented the viewmodel using separate javascript files for separate pages (i.e one for login page, one for recipe pages, etc). To keep up to date I used ES6 syntax javascript as much as possible, which is now available by default in modern browsers. This way, I tried both to keep the viewmodel object oriented (using ES6 classes), and to keep cohesion and encapsulation high.
+For the server calls in fetching recipe comments and logging in/out I used jQuerys \code{\$.get} and \code{\$.post} methods. I changed the server parts to send the replies using PHPs \code{json\_encode} function, to get the replies in JSON format, easy to parse in javascript. To generate the comment divs in the view I used a foreach knockout binding to dynamically render the list of comments. The data sent from server is stored in the viewmodel's classes and not in HTML, they are then generated by the knockout framework.
 
 \chapter{Result}
 \label{sec:result}
 
-The git repository can be found \href{https://github.com/fongie/TastyRecipes/tree/assignment3}{here}.
+The git repository can be found \href{https://github.com/fongie/TastyRecipes/tree/assignment4}{here}.
 
-\section{Task 1}
+\section{Optional Task 1}
 
-All source code is inside the \code{src} directory, where the layers are: \code{controller}, \code{model}, \code{integration}, and \code{util}. Inside each map are the class files, one file per class. The structure is best described by the class diagram in Figure \ref{fig:classdia}. There is only mixed PHP and HTML in the \code{view} layer, all other code is object oriented PHP. There are only three static methods: two in the \code{Util} class used by the \code{view} layer for redirections, and one, also used by the view, for getting the \code{Controller} from the \code{SESSION} cookie. All layers have the roles specified by the MVC pattern, and there are only dependencies "downwards" through the layers, as can be seen in the class diagram.
+The result is HTML pages that are completely free of data, and instead javascript classes contain all the data, from where it is output to the browser by the Knockout framework.
+The viewmodel files are \href{https://github.com/fongie/TastyRecipes/tree/assignment4/src/view/viewmodel}{here}. As an example, you can see \href{https://github.com/fongie/TastyRecipes/tree/assignment4/src/view/viewmodel/commentSection}{the commentSection js file}, for how comments are fetched, posted, and deleted using ajax get and post requests. The data bindings for knockout, and the only HTML shown in the DOM, are in \href{https://github.com/fongie/TastyRecipes/tree/assignment4/src/view/parts/comments.php}{this file}. You can see that there is no data in the HTML file, and by the \code{data-bind} attributes that Knockout framework is used. The server sends only data as a response to the ajax requests. All such requests can be found in the \href{https://github.com/fongie/TastyRecipes/tree/assignment4/src/view/requests}{requests directory}, where you can easily see that what is returned by the server is always \href{https://github.com/fongie/TastyRecipes/blob/b3511142454b98a722c9f1fa76f3680c740ec1b4/src/view/requests/get\_comments.php#L8}{json data}.
+
+Recipe comments are stored in the knockout observable array \code{comments} belonging to the {commentSection} class.
+
 
 \begin{figure}[h!]
   \begin{center}

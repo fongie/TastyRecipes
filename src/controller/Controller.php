@@ -123,5 +123,9 @@ class Controller {
         $currentLoggedinUser = $this->uaHandler->getUsername();
         $this->currentRecipeSite->deleteComment($commentID, $currentLoggedinUser);
     }
+
+    public function getLastCommentId() {
+        return $this->currentRecipeSite->getLastCommentId();
+    }
 }
 ?>

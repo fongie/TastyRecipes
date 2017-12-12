@@ -40,5 +40,10 @@ class CommentSection {
             $db->removeComment($commentID);
         }
     }
+
+    public function getLastCommentId() {
+        $db = new DatabaseRequest();
+        return $db->getLastCommentId();
+    }
 }
 ?>

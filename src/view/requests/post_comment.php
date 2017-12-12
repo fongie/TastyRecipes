@@ -6,5 +6,6 @@ session_start();
 
 $cntr = Controller::getController();
 $cntr->postComment($_POST["posttext"]);
-echo 1;
+$id = $cntr->getLastCommentId();
+echo json_encode($id);
 ?>

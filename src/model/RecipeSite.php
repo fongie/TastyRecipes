@@ -62,6 +62,11 @@ class RecipeSite {
     public function deleteComment($commentID, $currentLoggedinUser) {
         $this->commentSection->deleteComment($commentID, $currentLoggedinUser);
     }
+
+    public function getLastCommentId() {
+        return $this->commentSection->getLastCommentId(); 
+    }
+
     private function parseXML($recipeID) {
 
         # This ID MUST be in in the database in the same position as the recipes appear in the xml recipes.xml.

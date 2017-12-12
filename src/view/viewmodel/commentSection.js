@@ -7,6 +7,7 @@ $(document).ready(() => {
             this.comments = ko.observableArray();
             this.posttext = ko.observable();
             this.showPostForm = ko.observable(false);
+            this.currentUsername = "";
 
             //Get all comments as array
             $.getJSON(
@@ -23,10 +24,15 @@ $(document).ready(() => {
                 "/src/view/requests/get_login.php",
                 (resp) => {
                     this.showPostForm(resp.loggedIn);
+                    if (resp.loggedIn) {
+                        this.currentUsername = resp.username;
+                    }
                 }
             );
         }
 
+        /* Post comment and add it to the current observable array without reloading page
+        */
         postComment() {
             const data = {
                 posttext: ko.toJS(this.posttext)
@@ -35,7 +41,9 @@ $(document).ready(() => {
             $.post(
                 "/src/view/requests/post_comment.php",
                 data,
-                (resp) => (window.location.reload()), // use javascript to reload after server is done deleting
+                (resp) => {
+                    this.comments.push({byCurrentUser: true, comment_id: resp, username: this.currentUsername, comment: data.posttext, deleteComment: this.deleteComment});
+                },
                 "json"
             );
         }
@@ -49,7 +57,7 @@ $(document).ready(() => {
             $.post(
                 "/src/view/requests/delete_comment.php",
                 data,
-                (resp) => (window.location.reload()), // use javascript to reload after server is done deleting
+                (resp) => (this.comments.remove((comment) => comment.comment_id == cID)),
                 "json"
             );
         }
