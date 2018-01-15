@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <?php include 'parts/head.php' ?>
+    <%= EEx.eval_file("view/parts/head.eex") %>
     </head>
     <body>
         <header>
-            <?php include 'parts/header.php' ?>
+      <%= EEx.eval_file("view/parts/header.eex") %>
         </header>
         <div class="calendar">
             <h3>Food Calendar</h3>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <footer>
-            <?php include 'parts/footer.php' ?>
+      <%= EEx.eval_file("view/parts/footer.eex") %>
         </footer>
     </body>
 </html>

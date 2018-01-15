@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= EEx.eval_file("view/parts/head.eex") %>
+  </head>
+  <body>
+    <header>
+      <%= EEx.eval_file("view/parts/header.eex") %>
+    </header>
+    <div class="recipe-site">
+
+      <div class='recipe'>
+        <div class='recipe-header'>
+          <h3><%= name %></h3>'
+          <img alt='<%= name %>' src='<%= img %>'>
+        </div>
+        <ul class='ingredient-list'>
+          <li class='li-heading'><h4>Ingredients</h4></li>
+          <%= for i <- 0..length(ingredients) do %>
+            <li><%=Enum.at(ingredients, i) %></li>
+          <% end %>
+        </ul>
+
+        <ul class='instructions-list'>
+          <li class='li-heading'><h4>Instructions:</h4>
+            <%= for i <- 0..length(instructions) do %>
+              <li><%=Enum.at(instructions, i) %></li>
+            <% end %>
+        </ul>
+      </div>
+
+      <div class="usercomments" id="commentSection">
+        <h4>Comments:</h4>
+
+        <!-- Comments list -->
+        <ul id="comments-list" data-bind="foreach: comments">
+          <li>
+            <div class="comment">
+              <div class="username-div">
+                <p><strong data-bind="text: username"></strong></p>
+              </div>
+              <div class="comment-div">
+                <p data-bind="text: comment"></p>
+
+                <!-- Delete key -->
+                <div class="delete-div" data-bind="visible: byCurrentUser">
+                  <form data-bind="submit: deleteComment">
+                    <input type="hidden" data-bind="value: comment_id">
+                    <button class="w3cbutton" type="submit">Delete</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Post comment form -->
+        <div class="comment-form-container" data-bind="visible: showPostForm">
+          <form class="comment-form" data-bind="submit: postComment">
+            <input type="text" data-bind="textInput: posttext" placeholder="Write your comment here!" name="posttext" required>
+            <button class="w3cbutton" type="submit">Send</button>
+          </form>
+        </div>
+        <p data-bind="visible: !showPostForm()"><a href="/login">Log in</a> to post a comment!</p>
+
+      </div>
+      <script src="/res/viewmodel/commentSection.js"></script>
+    </div>
+
+    <footer>
+      <%= EEx.eval_file("view/parts/footer.eex") %>
+    </footer>
+  </body>
+
+</html>
