@@ -20,13 +20,7 @@ defmodule ViewSender do
   end
 
   def recipeSite(name) do
-    header_name = String.capitalize(name)
-    insert_data = [
-      name: header_name,
-      img: "/res/img/#{name}.jpg",
-      ingredients: ['stuff', 'stuff2'],
-      instructions: ['instruct', 'instr2'],
-    ]
+    insert_data = XML.parse(name)
     EEx.eval_file("view/recipe.eex", insert_data)
   end
 
