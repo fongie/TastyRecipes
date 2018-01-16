@@ -15,7 +15,8 @@ defmodule Server.Mixfile do
   def application do
     [
       applications: [:cowboy, :plug],
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      mod: {Server, []} #uses Application to run Server.start/2 on mix run
     ]
   end
 
